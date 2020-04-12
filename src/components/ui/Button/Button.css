@@ -1,0 +1,20 @@
+@import '../../../styles/variables.css';
+
+.button {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+}
+
+.color {
+  &_purple {
+    background-color: #9448bc;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}

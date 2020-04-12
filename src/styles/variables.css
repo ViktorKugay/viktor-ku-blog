@@ -1,0 +1,12 @@
+:root {
+  --font-fallback: 'Segoe UI', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  --font-roboto: 'Montserrat', var(--font-fallback);
+
+  --primary-color: #373d48;
+  --secondary-color: #a3a3a3;
+  --sidebar-color: #f4f4f4;
+  --text-color: #000000cc;
+
+  /* stylelint-disable-next-line */
+  --main-width: 45rem;
+}

@@ -1,0 +1,53 @@
+.root {
+  width: 100%;
+}
+
+.color {
+  &_white {
+    background-color: white;
+  }
+
+  &_black {
+    background-color: black;
+  }
+
+  &_grey {
+    background-color: grey;
+  }
+}
+
+.height {
+  &_1 {
+    height: 1px;
+  }
+
+  &_2 {
+    height: 2px;
+  }
+
+  &_4 {
+    height: 4px;
+  }
+
+  &_6 {
+    height: 6px;
+  }
+}
+
+.margin {
+  &_4 {
+    margin: 4px 0;
+  }
+
+  &_8 {
+    margin: 8px 0;
+  }
+
+  &_12 {
+    margin: 12px 0;
+  }
+
+  &_16 {
+    margin: 16px 0;
+  }
+}

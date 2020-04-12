@@ -1,0 +1,26 @@
+.root {
+  z-index: 100;
+  margin: 24px 0;
+  display: flex;
+  background-color: white;
+  border-radius: 5px;
+  /* stylelint-disable-next-line */
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0.725rem 1.45rem -0.3625rem;
+}
+
+.content {
+  position: relative;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.arrow {
+  position: absolute;
+  right: 4%;
+}

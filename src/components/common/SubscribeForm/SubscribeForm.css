@@ -1,0 +1,26 @@
+.root {
+  width: 100%;
+
+  @media (min-width: 900px) {
+    width: 50%;
+  }
+}
+
+.title_container {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  margin-left: 24px;
+}
+
+.button {
+  margin-top: 12px;
+}
+
+.description {
+  margin-top: 16px;
+  text-align: justify;
+}

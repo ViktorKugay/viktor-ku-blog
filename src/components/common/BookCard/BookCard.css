@@ -1,0 +1,142 @@
+.root {
+  padding-top: 64px;
+  display: flex;
+  width: 100%;
+}
+
+.image {
+  /* stylelint-disable-next-line */
+  display: none !important;
+  border-radius: 10px;
+
+  @media (min-width: 900px) {
+    /* stylelint-disable-next-line */
+    display: block !important;
+  }
+}
+
+.info {
+  padding: 24px;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.author {
+  margin-bottom: 32px;
+}
+
+.points {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.list_item {
+  display: flex;
+  align-items: center;
+
+  &_red::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: red;
+    border-radius: 50%;
+  }
+
+  &_orange::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: #faa73d;
+    border-radius: 50%;
+  }
+
+  &_black::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: black;
+    border-radius: 50%;
+  }
+
+  &_yellow::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: yellow;
+    border-radius: 50%;
+  }
+
+  &_green::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: green;
+    border-radius: 50%;
+  }
+
+  &_purple::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: purple;
+    border-radius: 50%;
+  }
+
+  &_blue::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: #6093d5;
+    border-radius: 50%;
+  }
+
+  &_grey::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: #c6cacd;
+    border-radius: 50%;
+  }
+
+  &_mustard::before {
+    margin-right: 8px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    background-color: #a48d59;
+    border-radius: 50%;
+  }
+}
+
+.link {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.learn_more_text {
+  margin-right: 12px;
+}
+
+.logo {
+  margin-bottom: 12px;
+  width: 100px;
+}

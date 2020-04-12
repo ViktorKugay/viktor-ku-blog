@@ -1,0 +1,166 @@
+{
+  "MainPage": {
+    "header": {
+      "title": "Viktor.Ku",
+      "links": [
+        {
+          "title": "bio",
+          "href": "/"
+        },
+        {
+          "title": "blog",
+          "href": "#blog"
+        },
+        {
+          "title": "projects",
+          "href": "#projects"
+        },
+        {
+          "title": "reads",
+          "href": "#reads"
+        },
+        {
+          "title": "newsletter",
+          "href": "#newsletter"
+        }
+      ],
+      "facebook": "https://www.facebook.com/profile.php?id=100006525159439"
+    },
+    "main": {
+      "bio": {
+        "description": "TypeScript full stack engineer. Infrastructure improvement, backend, frontend development. TypeScript, React, Redux, Express, Nestjs, PostgreSql and a lot of other efficient features. Learn more\u00A0",
+        "logo": "https://sun1-19.userapi.com/Z9C_DoWq1vECJdcIQmPqOndRyuIk-m8TYbEamg/BPpxXBCgOlA.jpg"
+      },
+      "latest": {
+        "title": "Latest Post"
+      },
+      "posts": {
+        "title": "See all"
+      },
+      "packages": {
+        "packagesAndProjects": "Projects & Packages",
+        "items": [
+          {
+            "title": "formular",
+            "description": "Пакет для генерации вложенных форм на основе TypeScript типов",
+            "color": "linear-gradient(135deg, rgb(255, 247, 32) 10%, rgb(60, 213, 0) 100%)",
+            "href": "#"
+          },
+          {
+            "title": "formular",
+            "description": "Пакет для генерации вложенных форм на основе TypeScript типов",
+            "color": "linear-gradient(135deg, rgb(255, 247, 32) 10%, rgb(60, 213, 0) 100%)",
+            "href": "#"
+          },
+          {
+            "title": "formular",
+            "description": "Пакет для генерации вложенных форм на основе TypeScript типов",
+            "color": "linear-gradient(135deg, rgb(255, 247, 32) 10%, rgb(60, 213, 0) 100%)",
+            "href": "#"
+          },
+          {
+            "title": "formular",
+            "description": "Пакет для генерации вложенных форм на основе TypeScript типов",
+            "color": "linear-gradient(135deg, rgb(255, 247, 32) 10%, rgb(60, 213, 0) 100%)",
+            "href": "#"
+          }
+        ]
+      },
+      "books": {
+        "title": "Recently Read",
+        "items": [
+          {
+            "title": "Docker for Developers",
+            "author": "by Chris Tankersley",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1465366795l/30371645._SX318_.jpg",
+            "href": "https://www.goodreads.com/book/show/30371645-docker-for-developers",
+            "logo": "https://www.docker.com/sites/default/files/social/docker_facebook_share.png",
+            "color": "grey",
+            "points": [
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть"
+            ]
+          },
+          {
+            "title": "Code",
+            "author": "by Charles Petzold",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328830222l/44882.jpg",
+            "href": "https://www.goodreads.com/book/show/44882.Code",
+            "logo": "https://cdn2.iconfinder.com/data/icons/conceptual-vectors-of-logos-and-symbols-1-1/66/45-512.png",
+            "color": "mustard",
+            "points": [
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть"
+            ]
+          },
+          {
+            "title": "You Don't Know JS",
+            "author": "by Kyle Simpson",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1457542606l/25136217._SY475_.jpg",
+            "href": "https://www.goodreads.com/series/139311-you-don-t-know-js",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/240px-JavaScript-logo.png",
+            "color": "black",
+            "points": [
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть"
+            ]
+          },
+          {
+            "title": "TypeScript Deep Dive",
+            "author": "by Basarat Ali Syed",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1477478670l/29634529._SY475_.jpg",
+            "href": "https://www.goodreads.com/book/show/29634529-typescript-deep-dive",
+            "logo": "https://vignette.wikia.nocookie.net/dev/images/d/db/Typescript_logo.png/revision/latest?cb=20151023133416",
+            "color": "blue",
+            "points": [
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть"
+            ]
+          },
+          {
+            "title": "Algorithms Illuminated",
+            "author": "by Tim Roughgarden",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1506676470l/36323236._SY475_.jpg",
+            "href": "https://www.goodreads.com/book/show/36323236-algorithms-illuminated?from_search=true&qid=h8tNT834ll&rank=1",
+            "logo": "https://cdn2.iconfinder.com/data/icons/conceptual-vectors-of-logos-and-symbols-1-1/66/45-512.png",
+            "color": "red",
+            "points": [
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть"
+            ]
+          },
+          {
+            "title": "Dive Into Design Patterns",
+            "author": "by Alexander Shvets",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1543945452l/43125355._SY475_.jpg",
+            "href": "https://www.goodreads.com/book/show/43125355-dive-into-design-patterns",
+            "logo": "https://i.pinimg.com/originals/45/03/98/450398f4ff10d0253602b6a6d99419ed.png",
+            "color": "purple",
+            "points": [
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть",
+              "раз два три четыре пять шесть"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
