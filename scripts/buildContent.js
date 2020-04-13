@@ -5,13 +5,14 @@ const path = require('path');
 
 const converter = new Showdown.Converter();
 
+const contentDirPath = path.resolve('content');
 const outputFilePath = path.resolve('content.json');
 
-const contentDirPath = path.resolve('content');
+module.exports = {
+  buildContent,
+};
 
-main();
-
-function main() {
+function buildContent() {
   const articlesDirMap = readdirSync(contentDirPath);
 
   const articles = [];
@@ -27,6 +28,8 @@ function main() {
   }
 
   writeFileSync(outputFilePath, stringify(articles));
+
+  return articles;
 }
 
 function stringify(data) {

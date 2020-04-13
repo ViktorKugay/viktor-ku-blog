@@ -1,13 +1,15 @@
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {buildContent} = require('./scripts/buildContent');
 const TerserPlugin = require('terser-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const path = require('path');
 
-const contentPath = path.resolve('content.json');
-
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const DEV_TOOL = NODE_ENV === 'development' && 'cheap-module-source-map';
+const ENTRY_POINT = path.resolve('src', 'index.ts');
+const OUTPUT_PATH = path.resolve(__dirname, 'dist');
 
 const postcssLoader = {
   loader: require.resolve('postcss-loader'),
@@ -29,15 +31,16 @@ const postcssLoader = {
 };
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: ENTRY_POINT,
   mode: NODE_ENV,
-  devtool: false,
+  devtool: DEV_TOOL,
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: OUTPUT_PATH,
+    publicPath: '/',
   },
   devServer: {
     historyApiFallback: true,
@@ -78,7 +81,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        __env__: JSON.stringify(require(contentPath)),
+        __env__: JSON.stringify(buildContent()),
       },
     }),
     new HtmlWebpackPlugin({

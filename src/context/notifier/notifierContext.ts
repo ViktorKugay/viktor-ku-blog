@@ -1,5 +1,5 @@
 import {createContext, Dispatch, SetStateAction} from 'react';
-import {Notifications} from './notifierProvider';
+import {Notifications} from './NotifierProvider';
 
 interface Context {
   notifications: Notifications;

@@ -4,10 +4,10 @@ import cn from 'classnames';
 import s from './Button.css';
 
 interface Props {
-  className?: string;
-  onClick?(evet: any): void;
   color: 'purple';
+  className?: string;
   fullWidth?: boolean;
+  onClick?(evet: any): void;
 }
 
 export const Button: React.FC<Props> = ({color, className, children, onClick, fullWidth}) => {

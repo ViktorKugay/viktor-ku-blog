@@ -7,6 +7,7 @@ import anime from 'animejs';
 import s from './PostCard.css';
 
 interface Props {
+  id: string;
   className?: string;
   title: string;
   description?: string;
@@ -22,6 +23,7 @@ export const PostCard: React.FC<Props> = ({
   margin = 'normal',
   description,
   mod = 'middle',
+  id,
 }) => {
   const classNames = cn(s.root, s[`mod_${mod}`], s[`margin_${margin}`], className);
 
@@ -45,13 +47,15 @@ export const PostCard: React.FC<Props> = ({
     });
   };
 
+  const pathLinkTo = `/post/${id}`;
+
   return (
     <Link
       className={cn(s.link, classNames)}
       ref={container}
       onMouseEnter={handleOver}
       onMouseLeave={handleDown}
-      to="/post"
+      to={pathLinkTo}
     >
       {image && <img className={s.image} src={image} alt="alt" />}
       <div className={cn(s[`text_container_${mod}`])}>

@@ -1,10 +1,13 @@
+interface ArticleAttributes {
+  id: string;
+  title: string;
+  date: string;
+  image: string;
+  description: string;
+}
+
 export interface Article {
-  attributes: {
-    title: string;
-    date: string;
-    image: string;
-    description: string;
-  };
+  attributes: ArticleAttributes;
   body: string;
   bodyBegin: number;
   frontmatter: string;

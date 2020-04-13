@@ -25,6 +25,7 @@ declare module '*.png' {
 
 interface Article {
   attributes: {
+    id: string;
     title: string;
     date: string;
     image: string;

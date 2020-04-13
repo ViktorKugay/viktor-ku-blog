@@ -4,10 +4,10 @@ import cn from 'classnames';
 import s from './Logo.css';
 
 interface Props {
-  image: any;
-  className?: string;
+  image: string;
   mod?: 'circle';
   width?: number;
+  className?: string;
   margin?: 8 | 12 | 16 | 24;
 }
 

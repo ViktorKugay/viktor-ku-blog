@@ -1,4 +1,5 @@
 ---
+id: base64
 title: Do you encoding query params? Don`t use base64!
 date: '2020-04-05T00:00:00.000Z'
 image: https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
