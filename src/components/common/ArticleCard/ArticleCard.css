@@ -25,6 +25,7 @@
 
 .image {
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
   width: 100%;
@@ -32,13 +33,22 @@
 }
 
 .text_container {
+  z-index: 1;
+  background-color: white;
+
   &_large {
+    margin-top: 55%;
     padding: 24px;
-    padding-top: 55%;
   }
 
   &_small {
-    padding-top: 60%;
+    margin-top: 60%;
+    padding: 12px 8px;
+
+    @media (min-width: 900px) {
+      padding-right: 0;
+      padding-left: 0;
+    }
   }
 }
 

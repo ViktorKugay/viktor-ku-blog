@@ -1,10 +1,11 @@
-import React from 'react';
 import cn from 'classnames';
+import Slider from 'react-slick';
+import React, {MutableRefObject} from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 interface Props {
-  slider: any;
+  slider: MutableRefObject<Slider>;
   mod: 'prev' | 'next';
   className?: string;
 }

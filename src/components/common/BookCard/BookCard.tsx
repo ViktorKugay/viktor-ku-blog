@@ -1,6 +1,5 @@
 import InfoIcon from '@material-ui/icons/Info';
 import {Text} from '../../ui/Text/Text';
-import {Link} from 'react-router-dom';
 import React, {useRef} from 'react';
 import cn from 'classnames';
 import anime from 'animejs';
@@ -18,9 +17,10 @@ interface Props {
 }
 
 export const BookCard: React.FC<Props> = ({image, title, author, href, points, logo, color = 'orange'}) => {
-  const icon = useRef() as any;
-
-  const container = useRef() as any;
+  const icon = useRef();
+  const container = useRef();
+  const linkTarget = '_blank';
+  const linkRel = 'noopener noreferrer';
 
   const handleOver = () => {
     anime({
@@ -54,10 +54,10 @@ export const BookCard: React.FC<Props> = ({image, title, author, href, points, l
             </li>
           ))}
         </ul>
-        <Link ref={container} onMouseEnter={handleOver} className={s.link} to={href}>
+        <a href={href} rel={linkRel} ref={container} className={s.link} target={linkTarget} onMouseEnter={handleOver}>
           <Text className={s.learn_more_text}>{'Learn more'}</Text>
           <InfoIcon ref={icon} />
-        </Link>
+        </a>
       </div>
     </div>
   );

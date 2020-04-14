@@ -5,8 +5,8 @@ import s from './Divider.css';
 
 interface Props {
   color?: 'white' | 'black' | 'grey';
-  height?: '1' | '2' | '4' | '6';
   margin?: '4' | '8' | '12' | '16';
+  height?: '1' | '2' | '4' | '6';
   className?: string;
 }
 

@@ -1,10 +1,8 @@
+import {scrollToElement} from '../../../utils/scrollToElement';
 import {Container} from '../../ui/Container/Container';
 import {Text} from '../../ui/Text/Text';
 import {Link} from 'react-router-dom';
 import React from 'react';
-
-// @ts-ignore
-import smoothScroll from 'smoothscroll';
 
 import s from './Header.css';
 
@@ -14,11 +12,7 @@ export const Header: React.FC = ({children}) => {
   const handleLinkClick = (href: string) => (event: any) => {
     if (href[0] === '#') {
       event.preventDefault();
-      const scrollTo = document.querySelector(href);
-
-      if (scrollTo) {
-        smoothScroll(scrollTo);
-      }
+      scrollToElement(href);
     }
   };
 

@@ -3,16 +3,19 @@ import {Text} from '../../ui/Text/Text';
 import React, {useRef} from 'react';
 import anime from 'animejs';
 
-import s from './PackageCard.css';
+import s from './ProjectCard.css';
 
 interface Props {
+  href: string;
   title: string;
-  description: string;
   color: string;
+  description: string;
 }
 
-export const PackageCard: React.FC<Props> = ({title, description, color}) => {
-  const container = useRef() as any;
+export const ProjectCard: React.FC<Props> = ({title, description, color, href}) => {
+  const container = useRef();
+  const linkTarget = '_blank';
+  const linkRel = 'noopener noreferrer';
 
   const handleOver = () => {
     anime({
@@ -31,8 +34,16 @@ export const PackageCard: React.FC<Props> = ({title, description, color}) => {
   };
 
   return (
-    <div className={s.root} ref={container} onMouseEnter={handleOver} onMouseLeave={handleDown}>
-      <div style={{background: color, flexGrow: 0, width: 24, borderRadius: '5px 0 0 5px'}} />
+    <a
+      href={href}
+      rel={linkRel}
+      ref={container}
+      className={s.root}
+      target={linkTarget}
+      onMouseEnter={handleOver}
+      onMouseLeave={handleDown}
+    >
+      <div style={{background: color}} className={s.left_side_color} />
       <div className={s.content}>
         <Text mod="h3" weight="700" className={s.title}>
           {title}
@@ -42,6 +53,6 @@ export const PackageCard: React.FC<Props> = ({title, description, color}) => {
         </Text>
         <ArrowForwardIcon className={s.arrow} />
       </div>
-    </div>
+    </a>
   );
 };

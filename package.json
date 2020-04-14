@@ -8,13 +8,15 @@
     "build": "yarn build:content && yarn build:frontend",
     "build:frontend": "NODE_ENV=production webpack",
     "build:content": "node scripts/buildContent.js",
+    "test": "jest --passWithNoTests",
     "typecheck": "tsc --noEmit packages/frontend",
+    "lint": "run-p lint:*",
     "lint:css": "stylelint \"src/components/**/*.css\" --config .stylelintrc-format",
     "lint:js": "eslint 'src/**/*.{ts,tsx,js}' --cache",
+    "format": "run-p format:*",
     "format:js": "prettier --write \"src/**/*.{ts,tsx,js}\"",
     "format:json": "prettier --write \"src/**/*.json\"",
-    "format:css": "prettier --write \"src/components/**/*.css\" && stylelint --fix \"src/components/**/*.css\" --config .stylelintrc-format",
-    "test": "jest --passWithNoTests"
+    "format:css": "prettier --write \"src/components/**/*.css\" && stylelint --fix \"src/components/**/*.css\" --config .stylelintrc-format"
   },
   "husky": {
     "hooks": {
@@ -42,7 +44,7 @@
       ]
     },
     "ignore": [
-      "packages/frontend/src/styles/reboot.css"
+      "src/styles/reboot.css"
     ]
   },
   "dependencies": {
@@ -82,10 +84,11 @@
     "@typescript-eslint/eslint-plugin": "2.22.0",
     "@typescript-eslint/parser": "2.22.0",
     "autoprefixer": "9.7.1",
-    "babel-jest": "^25.3.0",
+    "babel-jest": "25.3.0",
     "babel-loader": "8.0.6",
     "babel-preset-react-app": "9.0.2",
     "css-loader": "3.2.0",
+    "dotenv": "8.2.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-config-react-app": "5.2.0",

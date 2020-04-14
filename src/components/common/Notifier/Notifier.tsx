@@ -15,7 +15,6 @@ const NotifierBase: React.FC<Props> = ({enqueueSnackbar}) => {
       for (const {message, variant} of notifications) {
         enqueueSnackbar(message, {variant});
       }
-
       setNotifications([]);
     }
   }, [enqueueSnackbar, notifications, setNotifications]);

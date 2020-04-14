@@ -6,6 +6,7 @@ const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const path = require('path');
 
+const CONTENT_DIR_PATH = path.resolve('content');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const DEV_TOOL = NODE_ENV === 'development' && 'cheap-module-source-map';
 const ENTRY_POINT = path.resolve('src', 'index.ts');
@@ -81,7 +82,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        __env__: JSON.stringify(buildContent()),
+        __env__: JSON.stringify(buildContent(CONTENT_DIR_PATH)),
       },
     }),
     new HtmlWebpackPlugin({

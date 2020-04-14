@@ -1,57 +1,5 @@
 @import '../../../styles/variables.css';
 
-.nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: baseline;
-
-  @media (min-width: 900px) {
-    flex-direction: row;
-  }
-}
-
-.header_container {
-  padding: 0 24px;
-  align-items: flex-start;
-
-  @media (min-width: 900px) {
-    padding: 0;
-    align-items: center;
-  }
-}
-
-.header_link {
-  margin: 4px 0;
-  text-decoration: none;
-
-  &:first-child {
-    margin-left: 0;
-
-    @media (min-width: 900px) {
-      margin: 0 24px;
-    }
-  }
-
-  &:last-child {
-    margin-right: 0;
-
-    @media (min-width: 900px) {
-      margin: 0 24px;
-    }
-  }
-
-  @media (min-width: 900px) {
-    margin: 0 24px;
-  }
-}
-
-.section_title {
-  margin-top: 36px;
-  margin-bottom: 36px;
-  width: 100%;
-}
-
 .logo {
   display: none;
 
@@ -73,7 +21,7 @@
   color: #292961;
 }
 
-.latest_post {
+.latest_article {
   margin-bottom: 32px;
   padding: 0 24px;
 
@@ -82,20 +30,13 @@
   }
 }
 
-.header_background {
-  position: absolute;
-  z-index: -100000;
-  top: -250px;
-  left: 0;
-  margin-top: 124px;
-  margin-bottom: 800px;
+.latest_article_title {
+  margin-top: 36px;
+  margin-bottom: 36px;
   width: 100%;
-  height: 750px;
-  background: linear-gradient(#507eb1, #709dc7 10%, #dde9f5 38%, #eaf2f9 48%, #f6f9fc 62%);
-  transform: skewY(-5deg);
 }
 
-.posts_container {
+.articles_container {
   padding: 32px 24px;
   align-items: stretch;
 
@@ -105,7 +46,7 @@
   }
 }
 
-.all_posts_link {
+.show_articles_link {
   padding-left: 16px;
   display: flex;
   width: 100%;
@@ -116,12 +57,12 @@
   }
 }
 
-.packages_background {
+.projects_background {
   max-width: 100%;
   background: linear-gradient(135deg, rgb(252, 207, 49) 10%, rgb(245, 85, 85) 100%);
 }
 
-.packages_container {
+.projects_container {
   padding: 0 16px;
 
   @media (min-width: 900px) {
@@ -129,21 +70,28 @@
   }
 }
 
+.projects_title {
+  margin-top: 36px;
+  margin-bottom: 36px;
+  width: 100%;
+}
+
 .books_title {
   width: 100%;
 }
 
-.slider_container {
-  max-width: 100%;
-}
-
 .books_container {
   position: relative;
+  margin-top: 60px;
   width: 80%;
 
   @media (min-width: 900px) {
     width: 100%;
   }
+}
+
+.slider_container {
+  max-width: 100%;
 }
 
 .next_arrow {
@@ -182,7 +130,6 @@
   padding-right: 24px;
   padding-left: 24px;
   padding-bottom: 64px;
-  max-width: 500px;
 
   @media (min-width: 900px) {
     padding-right: 0;

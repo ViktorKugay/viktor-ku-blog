@@ -13,17 +13,18 @@ interface Props {
   html: string;
 }
 
+const id = 'article';
+
 export const Article: React.FC<Props> = ({title, description, image, html}) => {
   const location = useLocation();
 
   useEffect(() => {
     scrollToElement('article');
-
     Prism.highlightAll();
   }, [location]);
 
   return (
-    <div id="article" className={s.container}>
+    <div id={id} className={s.container}>
       <h1>{title}</h1>
       <h2>{description}</h2>
       <img src={image} className={s.image} alt="post_image" />

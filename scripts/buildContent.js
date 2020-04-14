@@ -5,31 +5,34 @@ const path = require('path');
 
 const converter = new Showdown.Converter();
 
-const contentDirPath = path.resolve('content');
 const outputFilePath = path.resolve('content.json');
 
 module.exports = {
   buildContent,
+  buildArticle,
 };
 
-function buildContent() {
+function buildContent(contentDirPath) {
   const articlesDirMap = readdirSync(contentDirPath);
-
   const articles = [];
 
   for (const articleName of articlesDirMap) {
     if (isArticle(articleName)) {
       const articlePath = `${contentDirPath}/${articleName}`;
       const markdownArticle = readFileSync(articlePath, 'utf-8');
-      const jsonArticle = frontmatter(markdownArticle);
-      const htmlArticle = converter.makeHtml(jsonArticle.body);
-      articles.push({...jsonArticle, html: htmlArticle});
+      articles.push(buildArticle(markdownArticle));
     }
   }
 
   writeFileSync(outputFilePath, stringify(articles));
 
   return articles;
+}
+
+function buildArticle(markdownArticle) {
+  const jsonArticle = frontmatter(markdownArticle);
+  const htmlArticle = converter.makeHtml(jsonArticle.body);
+  return {...jsonArticle, html: htmlArticle};
 }
 
 function stringify(data) {

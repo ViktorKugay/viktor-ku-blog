@@ -13,12 +13,12 @@ interface Props {
 }
 
 export const Container: React.FC<Props> = ({
-  children,
   margin = 'normal',
   justify = 'center',
   align = 'center',
   wrap = 'wrap',
   className,
+  children,
   id,
 }) => {
   const classNames = cn(

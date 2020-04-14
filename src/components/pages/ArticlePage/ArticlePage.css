@@ -3,7 +3,6 @@
   padding-right: 24px;
   padding-left: 24px;
   padding-bottom: 64px;
-  max-width: 500px;
 
   @media (min-width: 900px) {
     padding-right: 0;
