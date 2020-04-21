@@ -1,0 +1,6 @@
+{
+  "title": "Formular",
+  "description": "Library to rendering forms based on Json schema with TypeScript definitions. Using Typescript-Json-Schema, Final-Form and Material-UI",
+  "color": "linear-gradient(135deg, rgb(75, 134, 255) 10%, #fb7066 100%)",
+  "href": "https://github.com/ViktorKugay/formular"
+}

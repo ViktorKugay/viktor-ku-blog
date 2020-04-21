@@ -1,6 +1,10 @@
 module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,jsx,mjs}', '!<rootDir>/node_modules/'],
-  setupFiles: [require.resolve('./tests/matchMedia'), require.resolve('./tests/setupContent')],
+  setupFiles: [
+    require.resolve('./tests/setupMatchMedia'),
+    require.resolve('./tests/setupContent'),
+    require.resolve('./tests/setupScrollTo'),
+  ],
   testMatch: ['<rootDir>/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}', '<rootDir>/**/?(*.)(test).{js,jsx,mjs,ts,tsx}'],
   testEnvironment: 'jsdom',
   testURL: 'http://localhost',

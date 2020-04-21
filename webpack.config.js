@@ -36,7 +36,7 @@ module.exports = {
   mode: NODE_ENV,
   devtool: DEV_TOOL,
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.md'],
   },
   output: {
     filename: 'bundle.js',
@@ -45,6 +45,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+    port: 3000,
   },
   module: {
     rules: [

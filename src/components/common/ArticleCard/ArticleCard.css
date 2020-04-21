@@ -34,6 +34,7 @@
 
 .text_container {
   z-index: 1;
+  width: 100%;
   background-color: white;
 
   &_large {
@@ -44,11 +45,6 @@
   &_small {
     margin-top: 60%;
     padding: 12px 8px;
-
-    @media (min-width: 900px) {
-      padding-right: 0;
-      padding-left: 0;
-    }
   }
 }
 

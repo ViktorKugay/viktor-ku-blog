@@ -12,7 +12,7 @@ export const Header: React.FC = ({children}) => {
   const handleLinkClick = (href: string) => (event: any) => {
     if (href[0] === '#') {
       event.preventDefault();
-      scrollToElement(href);
+      scrollToElement(href.slice(1));
     }
   };
 

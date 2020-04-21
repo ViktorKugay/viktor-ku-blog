@@ -1,6 +1,7 @@
 @import '../../../styles/variables.css';
 
 .logo {
+  margin-left: 0;
   display: none;
 
   @media (min-width: 900px) {

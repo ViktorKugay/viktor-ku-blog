@@ -41,12 +41,6 @@
         "packagesAndProjects": "Projects & Packages",
         "items": [
           {
-            "title": "Formular",
-            "description": "Library to rendering forms based on Json schema with TypeScript definitions. Using Typescript-Json-Schema, Final-Form and Material-UI",
-            "color": "linear-gradient(135deg, rgb(75, 134, 255) 10%, #fb7066 100%)",
-            "href": "https://github.com/ViktorKugay/formular"
-          },
-          {
             "title": "Viktor.Ku Blog",
             "description": "TypeScript React single page application. Posts and articles created from markdown using Front-Matter and Showdown",
             "color": "linear-gradient(135deg, rgb(255, 247, 32) 10%, rgb(60, 213, 0) 100%)",
@@ -65,9 +59,9 @@
             "logo": "https://www.docker.com/sites/default/files/social/docker_facebook_share.png",
             "color": "grey",
             "points": [
-              "раз два три четыре пять шесть",
-              "раз два три четыре пять шесть",
-              "раз два три четыре пять шесть",
+              "Docker history",
+              "Main concepts",
+              "Containerizing software",
               "раз два три четыре пять шесть",
               "раз два три четыре пять шесть"
             ]
