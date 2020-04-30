@@ -38,9 +38,13 @@ export const BookCard: React.FC<Props> = ({image, title, author, href, points, l
 
   return (
     <div className={s.root}>
-      <img src={image} alt={title} className={s.image} />
+      <div className={s.image_container}>
+        <img src={image} alt={title} className={s.image} />
+      </div>
       <div className={s.info}>
-        <img src={logo} alt={title} className={s.logo} />
+        <div className={s.logo_container}>
+          <img src={logo} alt={title} className={s.logo} />
+        </div>
         <Text mod="h3" weight="500" className={s.title}>
           {title}
         </Text>
