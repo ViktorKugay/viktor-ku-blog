@@ -17,7 +17,7 @@ import s from './MainPage.css';
 
 import c from './config.json';
 
-const SlickSliderSettings = {
+const SlickSliderSettings: Slider.Options = {
   dots: true,
   infinite: true,
   speed: 500,
@@ -25,6 +25,7 @@ const SlickSliderSettings = {
   slidesToScroll: 1,
   arrow: false,
   initialSlide: 0,
+  adaptiveHeight: false,
 };
 
 export const MainPage: React.FC = () => {
