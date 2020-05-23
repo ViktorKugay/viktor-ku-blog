@@ -54,10 +54,10 @@ export const MainPage: React.FC = () => {
         </Text>
         <ArticleCard
           mod="large"
-          id={articles[0].attributes.id}
-          image={articles[0].attributes.image}
-          title={articles[0].attributes.title}
-          description={articles[0].attributes.description}
+          id={articles[articles.length - 1].attributes.id}
+          image={articles[articles.length - 1].attributes.image}
+          title={articles[articles.length - 1].attributes.title}
+          description={articles[articles.length - 1].attributes.description}
         />
       </Container>
 
@@ -67,7 +67,7 @@ export const MainPage: React.FC = () => {
 
       {/* articles */}
       <Container wrap="wrap" justify="space-between" className={s.articles_container}>
-        {articles.map((article: Article, index) => (
+        {articles.reverse().map((article: Article, index) => (
           <ArticleCard
             mod="small"
             key={index}

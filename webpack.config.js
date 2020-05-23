@@ -1,4 +1,5 @@
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {buildContent} = require('./scripts/buildContent');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -89,6 +90,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new FaviconsWebpackPlugin('./public/favicon.png'),
   ],
   optimization: {
     minimizer: [
