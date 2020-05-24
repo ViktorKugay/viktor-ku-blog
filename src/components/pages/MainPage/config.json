@@ -60,8 +60,8 @@
             "color": "grey",
             "points": [
               "History of the Docker and containers",
-              "Main concepts to dockerizing applications",
-              "Getting started with Dockerfile",
+              "Getting started with Docker",
+              "Main concepts for dockerizing applications",
               "Tools and features to build your own containers",
               "Docker-compose and CLI features"
             ]
@@ -74,10 +74,10 @@
             "logo": "https://cdn2.iconfinder.com/data/icons/conceptual-vectors-of-logos-and-symbols-1-1/66/45-512.png",
             "color": "mustard",
             "points": [
-              "The really interesting facts about digital world",
-              "History of the computers and computing device",
+              "Important facts about digital world",
+              "History of the computers and computing devices",
               "Patterns, features and deep dive to the computer science",
-              "The most important people and discovering",
+              "The most prominent people and discovering",
               "The best digital features that made this world more beautiful"
             ]
           },
@@ -104,10 +104,10 @@
             "logo": "https://vignette.wikia.nocookie.net/dev/images/d/db/Typescript_logo.png/revision/latest?cb=20151023133416",
             "color": "blue",
             "points": [
-              "The book of the most useful feature modern JavaScript",
-              "History and reasons to create TypeScript",
-              "TypeScript as superset of JavaScript ",
-              "The most common TypeScript patterns",
+              "The most useful features of JavaScript",
+              "The reasons which lead to creation of TypeScript",
+              "TypeScript is superset of JavaScript ",
+              "Common TypeScript patterns",
               "Types, guards, CLI and more"
             ]
           },
@@ -120,7 +120,7 @@
             "color": "red",
             "points": [
               "Algorithms and Data structures",
-              "Most common use cases to solve problems",
+              "Most common use cases",
               "Theory and practice, lemmas and exercises",
               "Improvement the mathematical knowledge",
               "Wide view to the programming with asymptotic metrics"
@@ -136,7 +136,7 @@
             "points": [
               "The best book to start object-oriented programming",
               "Simple and useful patterns and diagrams",
-              "Object-oriented paradigm with examples",
+              "Object-oriented paradigms with examples",
               "SOLID and why it's important to solving problems",
               "The most popular strategies to build clean and save code"
             ]
