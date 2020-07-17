@@ -29,8 +29,7 @@ const SlickSliderSettings: Slider.Options = {
 };
 
 export const MainPage: React.FC = () => {
-  const {articles} = useContext(articlesContext);
-
+  const articles = useContext(articlesContext);
   const slider = useRef<Slider>();
 
   return (
@@ -67,17 +66,20 @@ export const MainPage: React.FC = () => {
 
       {/* articles */}
       <Container wrap="wrap" justify="space-between" className={s.articles_container}>
-        {articles.reverse().map((article: Article, index) => (
-          <ArticleCard
-            mod="small"
-            key={index}
-            margin="normal"
-            id={article.attributes.id}
-            image={article.attributes.image}
-            title={article.attributes.title}
-            description={article.attributes.description}
-          />
-        ))}
+        {articles
+          .slice()
+          .reverse()
+          .map((article: Article, index) => (
+            <ArticleCard
+              mod="small"
+              key={index}
+              margin="normal"
+              id={article.attributes.id}
+              image={article.attributes.image}
+              title={article.attributes.title}
+              description={article.attributes.description}
+            />
+          ))}
 
         {/* <Link className={s.show_articles_link} to="/articles">
             <Text>{c.MainPage.main.articles.title}</Text>

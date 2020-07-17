@@ -13,7 +13,7 @@ import s from './ArticlePage.css';
 export const ArticlePage: React.FC = () => {
   const params = useParams();
   const location = useLocation();
-  const {articles} = useContext(articlesContext);
+  const articles = useContext(articlesContext);
   const article = useMemo(() => articles.find(article => article.attributes.id === params.id), [articles, params]);
 
   useEffect(() => {

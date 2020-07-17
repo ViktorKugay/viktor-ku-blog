@@ -1,8 +1,6 @@
 import {createContext} from 'react';
 import {Article} from '../../types/types';
 
-interface Context {
-  articles: Article[];
-}
+type Context = Article[];
 
 export const articlesContext = createContext(([] as unknown) as Context);
