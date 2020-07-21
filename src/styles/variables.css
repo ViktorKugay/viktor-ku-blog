@@ -1,6 +1,7 @@
 :root {
   --font-fallback: 'Segoe UI', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  --font-roboto: 'Montserrat', var(--font-fallback);
+  --font-montserrat: 'Montserrat', var(--font-fallback);
+  --font-mulish: 'Mulish', var(--font-fallback);
 
   --primary-color: #373d48;
   --secondary-color: #a3a3a3;

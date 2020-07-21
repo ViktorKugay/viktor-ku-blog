@@ -1,9 +1,12 @@
+@import '../../../styles/variables.css';
+
 /* stylelint-disable */
 
 .container {
   margin: 0 auto;
   padding: 48px 0;
   max-width: 90%;
+  font-family: var(--font-mulish);
 
   @media (min-width: 900px) {
     width: 40%;
@@ -130,6 +133,8 @@
     margin: 24px 0;
     text-align: justify;
     overflow-wrap: break-word;
+    font-size: 21px;
+    line-height: 32px;
   }
 
   blockquote {
