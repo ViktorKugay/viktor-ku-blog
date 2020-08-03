@@ -31,7 +31,8 @@
     "react-dom": "^16.13.1",
     "react-slick": "^0.27.1",
     "sass": "^1.26.10",
-    "smoothscroll": "^0.4.0"
+    "smoothscroll": "^0.4.0",
+    "typescript": "^3.9.7"
   },
   "devDependencies": {
     "@types/animejs": "^3.1.1",
@@ -59,7 +60,6 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-media-use-custom-media": "^2.0.0",
     "stylelint-order": "^4.1.0",
-    "stylelint-value-no-unknown-custom-properties": "^3.0.0",
-    "typescript": "^3.9.7"
+    "stylelint-value-no-unknown-custom-properties": "^3.0.0"
   }
 }
