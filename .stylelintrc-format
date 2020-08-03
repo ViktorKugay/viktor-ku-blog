@@ -10,7 +10,7 @@
     "stylelint-media-use-custom-media",
     "stylelint-order",
   ],
-  "ignoreFiles": ["./src/styles/reboot.css"],
+  "ignoreFiles": ["./styles/reboot.css"],
   "defaultSeverity": "error",
   "rules": {
     "aditayvm/at-rule-no-children": true,
@@ -18,13 +18,13 @@
     "csstools/media-use-custom-media": [
       "known",
       {
-        "importFrom": ["src/styles/variables.css"]
+        "importFrom": ["./styles/variables.css"]
       }
     ],
     "csstools/value-no-unknown-custom-properties": [
       true,
       {
-        "importFrom": ["src/styles/variables.css"]
+        "importFrom": ["./styles/variables.css"]
       }
     ],
     "at-rule-empty-line-before": [

@@ -1,1 +1,0 @@
-# summary v.e.kugay

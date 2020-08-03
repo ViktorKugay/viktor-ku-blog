@@ -1,16 +1,35 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "jsx": "react",
     "module": "commonjs",
+    "declaration": true,
     "removeComments": true,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
+    "target": "es6",
     "sourceMap": true,
-    "target": "es6"
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "strict": true,
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "isolatedModules": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx", "postcss.config.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
