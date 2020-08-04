@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "next",
     "start": "next start",
-    "build": "next build",
+    "build": "yarn build:content && yarn build:app",
+    "build:app": "next build",
     "build:content": "node scripts/build-content.js",
     "postbuild": "next-on-netlify",
     "typecheck": "tsc --noEmit",
