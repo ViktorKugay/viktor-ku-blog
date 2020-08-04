@@ -12,7 +12,6 @@ module.exports = {
   buildPost,
 };
 
-
 if (process.env.NODE_ENV !== 'test') {
   buildContent();
 }
