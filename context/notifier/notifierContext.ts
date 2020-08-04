@@ -1,4 +1,4 @@
-import {createContext, Dispatch, SetStateAction} from 'react';
+import {createContext, Dispatch, SetStateAction, useContext} from 'react';
 import {Notifications} from './NotifierProvider';
 
 interface Context {
@@ -10,3 +10,5 @@ interface Context {
 }
 
 export const notifierContext = createContext(([] as unknown) as Context);
+
+export const useNotifierContext = () => useContext(notifierContext);

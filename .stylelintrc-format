@@ -10,7 +10,7 @@
     "stylelint-media-use-custom-media",
     "stylelint-order",
   ],
-  "ignoreFiles": ["./styles/reboot.css"],
+  "ignoreFiles": ["./styles/reboot.scss"],
   "defaultSeverity": "error",
   "rules": {
     "aditayvm/at-rule-no-children": true,
@@ -18,13 +18,13 @@
     "csstools/media-use-custom-media": [
       "known",
       {
-        "importFrom": ["./styles/variables.css"]
+        "importFrom": ["./styles/variables.scss"]
       }
     ],
     "csstools/value-no-unknown-custom-properties": [
-      true,
+      false,
       {
-        "importFrom": ["./styles/variables.css"]
+        "importFrom": ["./styles/variables.scss"]
       }
     ],
     "at-rule-empty-line-before": [
@@ -95,9 +95,9 @@
         ignore: ["after-comment"]
       }
     ],
-    "selector-max-compound-selectors": 2,
+    "selector-max-compound-selectors": 3,
     "selector-max-id": 0,
-    "selector-max-type": 0,
+    "selector-max-type": 1,
     "selector-max-universal": 0,
     "selector-pseudo-element-no-unknown": true,
     "selector-pseudo-class-no-unknown": [
@@ -110,7 +110,6 @@
     "shorthand-property-no-redundant-values": true,
     "string-no-newline": true,
     "string-quotes": "single",
-    "unit-blacklist": ["em", "rem"],
     "order/order": [
       "declarations",
       {

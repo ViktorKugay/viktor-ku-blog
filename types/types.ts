@@ -1,4 +1,4 @@
-interface ArticleAttributes {
+export interface PostAttributes {
   id: string;
   date: string;
   title: string;
@@ -6,10 +6,10 @@ interface ArticleAttributes {
   description: string;
 }
 
-export interface Article {
+export interface Post {
   body: string;
   html: string;
   bodyBegin: number;
   frontmatter: string;
-  attributes: ArticleAttributes;
+  attributes: PostAttributes;
 }

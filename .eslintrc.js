@@ -35,7 +35,7 @@ module.exports = {
     'react/prefer-stateless-function': ['warn'],
     'react/jsx-handler-names': ['warn', {eventHandlerPrefix: 'handle', eventHandlerPropPrefix: 'on'}],
     'react/no-direct-mutation-state': ['error'],
-    'react/jsx-no-literals': ['warn', {noStrings: true}],
+    'react/jsx-no-literals': ['warn', {noStrings: false}],
     'react/sort-comp': ['off'],
     'react/no-string-refs': 'error',
     '@typescript-eslint/consistent-type-assertions': ['off'],
