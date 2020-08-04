@@ -24,7 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn build:content",
+      "pre-commit": "yarn build:content && lint-staged",
       "pre-push": "HOOK=true yarn test",
       "post-checkout": "yarnhook",
       "post-merge": "yarnhook",
