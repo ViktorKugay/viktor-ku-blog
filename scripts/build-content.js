@@ -12,9 +12,7 @@ module.exports = {
   buildPost,
 };
 
-if (process.env.NODE_ENV !== 'test') {
-  buildContent();
-}
+buildContent();
 
 function buildContent(contentDirPath = 'posts') {
   const postsDirMap = readdirSync(contentDirPath);
@@ -28,7 +26,9 @@ function buildContent(contentDirPath = 'posts') {
     }
   }
 
-  writeFileSync(outputFilePath, stringify(posts));
+  if (process.env.NODE_ENV !== 'test') {
+    writeFileSync(outputFilePath, stringify(posts));
+  }
 
   return posts;
 }
