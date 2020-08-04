@@ -30,7 +30,7 @@ const App: React.FC<Props> = ({Component, pageProps}) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <title>Viktor Kugay</title>
-        <link rel="icon" href={"https://static.rnd.tinkoff.ru/misc/favicon-4bed33d1-e37d-44f8-b2d3-4d9174ab42fd.png"} />
+        <link rel="icon" href={'https://static.rnd.tinkoff.ru/misc/favicon-4bed33d1-e37d-44f8-b2d3-4d9174ab42fd.png'} />
         <link
           href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,700;1,500&display=swap"
           rel="stylesheet"

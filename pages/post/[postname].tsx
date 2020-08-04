@@ -1,7 +1,7 @@
 import {PostContent} from '../../components/blocks/posts/post-content/post-content.component';
 import {HeaderBlock} from '../../components/blocks/header/header.component';
 import {FooterBlock} from '../../components/blocks/footer/footer.component';
-import { NextPage } from 'next';
+import {NextPage} from 'next';
 import Head from 'next/head';
 import React from 'react';
 
@@ -37,9 +37,9 @@ const PostPage: NextPage<Props> = ({title, description, image, html}) => {
 PostPage.getInitialProps = (ctx): any => {
   const {postname} = ctx.query;
 
-  const post = posts.find(p => p.attributes.id === postname);
+  const post = posts.find((p) => p.attributes.id === postname);
   if (!post) {
-    ctx.res && ctx.res.writeHead(302, { Location: '/404' });
+    ctx.res && ctx.res.writeHead(302, {Location: '/404'});
     ctx.res && ctx.res.end();
 
     return undefined;
@@ -49,8 +49,8 @@ PostPage.getInitialProps = (ctx): any => {
     title: post.attributes.title,
     description: post.attributes.description,
     image: post.attributes.image,
-    html: post.html
-  }
-}
+    html: post.html,
+  };
+};
 
 export default PostPage;
