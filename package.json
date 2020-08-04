@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "next",
     "start": "next start",
-    "build": "yarn build:app && yarn build:content",
-    "build:app": "next build",
+    "build": "next build",
     "build:content": "node scripts/build-content.js",
     "postbuild": "next-on-netlify",
     "typecheck": "tsc --noEmit",
@@ -25,7 +24,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "lint-staged && yarn build:content",
       "pre-push": "HOOK=true yarn test",
       "post-checkout": "yarnhook",
       "post-merge": "yarnhook",
