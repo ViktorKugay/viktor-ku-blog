@@ -14,14 +14,14 @@ const MainPage: NextPage = () => {
   return (
     <App>
       <HeaderBlock>
-        {/* <BioBlock />
+        <BioBlock />
         <PostLatest />
         <ProjectBlock />
         <BooksBlock />
         <Container>
           <Divider />
         </Container>
-        <FooterBlock /> */}
+        <FooterBlock />
       </HeaderBlock>
     </App>
   );

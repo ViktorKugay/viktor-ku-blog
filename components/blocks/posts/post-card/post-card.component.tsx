@@ -69,13 +69,13 @@ export const PostCard: React.FC<Props> = ({post, className, mod = 'middle', marg
             <span className={s.metric}>
               <Visibility />
               <Text mod="h4" weight="400" className={s.metrics_value}>
-                {postMetrics.views}
+                {postMetrics ? postMetrics.views : '~'}
               </Text>
             </span>
             <span className={s.metric}>
               <ThumbUpAlt />
               <Text mod="h4" weight="400" className={s.metrics_value}>
-                {postMetrics.likes}
+                {postMetrics ? postMetrics.likes : '~'}
               </Text>
             </span>
           </div>

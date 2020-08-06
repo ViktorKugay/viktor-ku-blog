@@ -7,12 +7,9 @@ import ErrorPage from 'next/error';
 import NextHead from 'next/head';
 import {NextPage} from 'next';
 import React from 'react';
+import {useRouter} from 'next/router';
 
 import posts from '../../content.json';
-
-interface Props {
-  post?: Post;
-}
 
 const renderHead = (post: Post) => (
   <NextHead>
@@ -26,7 +23,10 @@ const renderHead = (post: Post) => (
   </NextHead>
 );
 
-const PostPage: NextPage<Props> = ({post}) => {
+const PostPage: NextPage = () => {
+  const router = useRouter();
+
+  const post = posts.find((p) => p.attributes.id === router.query.postname);
   if (!post) {
     return <ErrorPage statusCode={404} />;
   }
@@ -39,12 +39,6 @@ const PostPage: NextPage<Props> = ({post}) => {
       </HeaderBlock>
     </App>
   );
-};
-
-PostPage.getInitialProps = (ctx) => {
-  const post = posts.find((p) => p.attributes.id === ctx.query.id);
-
-  return {post};
 };
 
 export default PostPage;

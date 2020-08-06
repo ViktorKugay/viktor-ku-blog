@@ -3,6 +3,8 @@ import 'firebase/auth'; // If you need it
 import 'firebase/firestore'; // If you need it
 import 'firebase/storage'; // If you need it
 import 'firebase/analytics'; // If you need it
+import {MetricsDocument, Metrics} from './firestore.types';
+import {extractFireStoreDocuments} from './helpers/extract-firesotore-documents';
 
 var clientCredentials = {
   apiKey: 'AIzaSyCTNeDdmqEkCbPE00ZNKAjFQXWsHSqBInU',
@@ -23,47 +25,45 @@ if (typeof window !== 'undefined' && !firebase.apps.length) {
 
 export default firebase;
 
-// class FirestoreApi {
-//   private firestore: admin.firestore.Firestore;
+class FirestoreApi {
+  private firestore: firebase.firestore.Firestore;
 
-//   constructor() {
-//     // if (!firebase.apps.length) {
-//     //   firebase.initializeApp(firebaseConfig);
-//     // }
+  constructor() {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(clientCredentials);
+    }
 
-//     admin.initializeApp({
-//       credential: admin.credential.cert(serviceAccount as any),
-//       databaseURL: "https://vkugay-4f82b.firebaseio.com"
-//     });
+    this.firestore = firebase.firestore();
+  }
 
-//     this.firestore = admin.firestore();
-//   }
+  public async incrementPostLikesCounter(postId: string): Promise<void> {
+    const postMetrics = await this.getPostMetricsByPostId(postId);
+    if (postMetrics) {
+      await this.postsCollection.doc(postId).set({likes: postMetrics.likes + 1}, {merge: true});
+    }
+  }
 
-//   public async incrementPostLikesCounter(postId: string): Promise<void> {
-//     const postMetrics = await this.getPostMetricsByPostId(postId);
-//     if (postMetrics) {
-//       await this.postsCollection.doc(postId).set({likes: postMetrics.likes + 1}, {merge: true});
-//     }
-//   }
+  public async incrementPostViewsCounter(postId: string): Promise<void> {
+    const postMetrics = await this.getPostMetricsByPostId(postId);
+    if (postMetrics) {
+      await this.postsCollection.doc(postId).set({views: postMetrics.views + 1}, {merge: true});
+    }
+  }
 
-//   public async incrementPostViewsCounter(postId: string): Promise<void> {
-//     const postMetrics = await this.getPostMetricsByPostId(postId);
-//     if (postMetrics) {
-//       await this.postsCollection.doc(postId).set({views: postMetrics.views + 1}, {merge: true});
-//     }
-//   }
+  public async getPostMetricsByPostId(postId: string): Promise<Metrics> {
+    return (await this.postsCollection
+      .doc(postId)
+      .get()
+      .then((res) => res.data())) as Metrics;
+  }
 
-//   public async getPostMetricsByPostId(postId: string): Promise<Metrics> {
-//     return await this.postsCollection.doc(postId).get().then((res) => res.data()) as Metrics;
-//   }
+  public async getPostsCollection(): Promise<MetricsDocument> {
+    return await this.postsCollection.get().then(extractFireStoreDocuments);
+  }
 
-//   public async getPostsCollection(): Promise<MetricsDocument> {
-//     return await this.postsCollection.get().then(extractFireStoreDocuments);
-//   }
+  private get postsCollection(): firebase.firestore.CollectionReference<firebase.firestore.DocumentData> {
+    return this.firestore.collection('posts');
+  }
+}
 
-//   private get postsCollection(): admin.firestore.CollectionReference<admin.firestore.DocumentData> {
-//     return this.firestore.collection('posts');
-//   }
-// }
-
-// export const firestoreApi = new FirestoreApi();
+export const firestoreApi = new FirestoreApi();

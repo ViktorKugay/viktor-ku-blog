@@ -11,6 +11,7 @@ import anime from 'animejs';
 
 import s from './post-content.module.scss';
 import c from './post-content.config.json';
+import {firestoreApi} from 'firebase/firestore.api';
 
 interface Props {
   post: Post;
@@ -25,6 +26,7 @@ export const PostContent: React.FC<Props> = ({post}) => {
   const postMetrics = metricsContext.getPostMetricsById(post.attributes.id);
 
   useEffect(() => {
+    firestoreApi.incrementPostViewsCounter(post.attributes.id);
     metricsContext.incrementPostViewsCounter(post.attributes.id);
     scrollToElement(c.PostContent.componentId);
     Prism.highlightAll();
@@ -41,6 +43,7 @@ export const PostContent: React.FC<Props> = ({post}) => {
       }, 500);
 
       setPostLiked(true);
+      firestoreApi.incrementPostLikesCounter(post.attributes.id);
       metricsContext.incrementPostLikesCounter(post.attributes.id);
     }
   };
@@ -71,7 +74,7 @@ export const PostContent: React.FC<Props> = ({post}) => {
         <span className={s.metric}>
           <Visibility />
           <Text mod="h4" weight="400" className={s.metrics_value}>
-            {postMetrics.views}
+            {postMetrics ? postMetrics.views : '~'}
           </Text>
         </span>
         <span className={s.metric}>
@@ -82,7 +85,7 @@ export const PostContent: React.FC<Props> = ({post}) => {
             onMouseLeave={handleLikeMoveDown}
           />
           <Text mod="h4" weight="400" className={s.metrics_value}>
-            {postMetrics.likes}
+            {postMetrics ? postMetrics.likes : '~'}
           </Text>
         </span>
       </div>

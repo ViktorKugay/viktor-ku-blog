@@ -15,8 +15,8 @@ interface Props {
 
 export const transfrom = (metrics: MetricsDocument, setMetrics: Dispatch<SetStateAction<MetricsDocument>>) => ({
   getPostMetricsById: getPostMetricsById(metrics),
-  incrementPostLikesCounter: incrementPostLikesCounter(setMetrics),
-  incrementPostViewsCounter: incrementPostViewsCounter(setMetrics),
+  incrementPostLikesCounter: incrementPostLikesCounter(metrics, setMetrics),
+  incrementPostViewsCounter: incrementPostViewsCounter(metrics, setMetrics),
 });
 
 export const MetricsProvider: React.FC<Props> = ({children}) => {
