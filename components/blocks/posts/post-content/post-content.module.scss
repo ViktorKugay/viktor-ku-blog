@@ -161,6 +161,26 @@
 }
 
 .image {
+  margin-bottom: 24px;
   width: 100%;
   border-radius: 5px;
+}
+
+.metrics_value {
+  margin-top: 2px;
+  line-height: 16px;
+}
+
+.metric {
+  margin-top: 8px;
+  display: flex;
+  width: 42px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metrics_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import {SliderContainer} from 'components/common/slider/slider.component';
-import {Container} from 'components/ui/container/container.component';
+import {SliderContainer} from '../../common/slider/slider.component';
+import {Container} from '../../ui/container/container.component';
 import {BookCard} from './book-card/book-card.component';
 import {Text} from '../../ui/text/text.component';
 

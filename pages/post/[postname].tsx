@@ -1,56 +1,50 @@
 import {PostContent} from '../../components/blocks/posts/post-content/post-content.component';
 import {HeaderBlock} from '../../components/blocks/header/header.component';
 import {FooterBlock} from '../../components/blocks/footer/footer.component';
+import {App} from '../../components/app';
+import {Post} from '../../types/types';
+import ErrorPage from 'next/error';
+import NextHead from 'next/head';
 import {NextPage} from 'next';
-import Head from 'next/head';
 import React from 'react';
 
 import posts from '../../content.json';
 
 interface Props {
-  title: string;
-  description: string;
-  image: string;
-  html: string;
+  post?: Post;
 }
 
-const PostPage: NextPage<Props> = ({title, description, image, html}) => {
+const renderHead = (post: Post) => (
+  <NextHead>
+    <meta property="og:title" content={post.attributes.title} />
+    <meta property="og:description" content={post.attributes.description} />
+    <meta property="og:image" content={post.attributes.image} />
+    <meta property="og:url" content="https://vkugay.ru" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="vk:image" content={post.attributes.image} />
+  </NextHead>
+);
+
+const PostPage: NextPage<Props> = ({post}) => {
+  if (!post) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   return (
-    <>
-      <Head>
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
-        <meta property="og:url" content="https://vkugay.ru" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ru_RU" />
-        <meta property="vk:image" content={image} />
-      </Head>
+    <App>
       <HeaderBlock>
-        <PostContent title={title} description={description} image={image} html={html} />
+        <PostContent post={post} />
         <FooterBlock />
       </HeaderBlock>
-    </>
+    </App>
   );
 };
 
-PostPage.getInitialProps = (ctx): any => {
-  const {postname} = ctx.query;
+PostPage.getInitialProps = (ctx) => {
+  const post = posts.find((p) => p.attributes.id === ctx.query.id);
 
-  const post = posts.find((p) => p.attributes.id === postname);
-  if (!post) {
-    ctx.res && ctx.res.writeHead(302, {Location: '/404'});
-    ctx.res && ctx.res.end();
-
-    return undefined;
-  }
-
-  return {
-    title: post.attributes.title,
-    description: post.attributes.description,
-    image: post.attributes.image,
-    html: post.html,
-  };
+  return {post};
 };
 
 export default PostPage;

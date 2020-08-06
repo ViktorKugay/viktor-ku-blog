@@ -1,5 +1,8 @@
-import React, {useRef} from 'react';
+import {useMetrics} from '../../../../context/metrics/metrics.context';
+import {Visibility, ThumbUpAlt} from '@material-ui/icons';
 import {Text} from '../../../ui/text/text.component';
+import {Post} from '../../../../types/types';
+import React, {useRef} from 'react';
 import Link from 'next/link';
 import cn from 'classnames';
 import anime from 'animejs';
@@ -8,30 +11,22 @@ import s from './post-card.module.scss';
 import c from './post-card.config.json';
 
 interface Props {
-  id: string;
-  title: string;
-  image?: string;
+  post: Post;
   className?: string;
-  description?: string;
   margin?: 'normal' | 'dense';
   mod?: 'large' | 'middle' | 'small';
 }
 
-export const PostCard: React.FC<Props> = ({
-  id,
-  title,
-  image,
-  className,
-  description,
-  mod = 'middle',
-  margin = 'normal',
-}) => {
+export const PostCard: React.FC<Props> = ({post, className, mod = 'middle', margin = 'normal'}) => {
+  const metricsContext = useMetrics();
   const container = useRef(null);
 
   const isLargeMod = mod === 'large';
   const alignTextBlock = mod === 'large' ? 'left' : 'center';
 
-  const handleMoveUpPostCard = () => {
+  const postMetrics = metricsContext.getPostMetricsById(post.attributes.id);
+
+  const handlePostCardMoveUp = () => {
     anime({
       targets: container.current,
       scale: 1.03,
@@ -39,7 +34,7 @@ export const PostCard: React.FC<Props> = ({
     });
   };
 
-  const handleMoveDownPostCard = () => {
+  const handlePostCardMoveDown = () => {
     anime({
       targets: container.current,
       scale: 1,
@@ -49,25 +44,41 @@ export const PostCard: React.FC<Props> = ({
 
   const renderDescriptionBlock = () => (
     <Text mod="h4" align="justify">
-      {description}
+      {post.attributes.description}
     </Text>
   );
 
   return (
-    <Link href={`/post/${id}`}>
+    <Link href={`/post/${post.attributes.id}`}>
       <div
         ref={container}
         role="article"
         className={cn(s.root, s.link, s[`mod_${mod}`], s[`margin_${margin}`], className)}
-        onMouseEnter={handleMoveUpPostCard}
-        onMouseLeave={handleMoveDownPostCard}
+        onMouseEnter={handlePostCardMoveUp}
+        onMouseLeave={handlePostCardMoveDown}
       >
-        <img className={s.image} src={image} alt={c.PostCard.postImageAlt} />
+        <img className={s.image} src={post.attributes.image} alt={c.PostCard.postImageAlt} />
         <div className={cn(s.text_container, s[`text_container_${mod}`])}>
           <Text mod="h3" margin="normal" align={alignTextBlock}>
-            {title}
+            {post.attributes.title}
           </Text>
+
           {isLargeMod && renderDescriptionBlock()}
+
+          <div className={s.metrics_container}>
+            <span className={s.metric}>
+              <Visibility />
+              <Text mod="h4" weight="400" className={s.metrics_value}>
+                {postMetrics.views}
+              </Text>
+            </span>
+            <span className={s.metric}>
+              <ThumbUpAlt />
+              <Text mod="h4" weight="400" className={s.metrics_value}>
+                {postMetrics.likes}
+              </Text>
+            </span>
+          </div>
         </div>
       </div>
     </Link>

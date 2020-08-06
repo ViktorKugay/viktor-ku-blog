@@ -1,6 +1,6 @@
 ---
 id: query-string-base64
-title: Query Params, Base64, Pain and Troubles.
+title: Url Query, Base64, Pain and Troubles.
 date: '2020-04-05T00:00:00.000Z'
 image: https://images.unsplash.com/photo-1457369804613-52c61a468e7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
 description: Don`t trust base64.
@@ -30,7 +30,7 @@ We should check both (URI and base64) list of symbols to be sure that there is n
 
 #### URI sub-delims list
 
-> \"!\" / \"\\\$\" / \"&\" / \"'\" / \"(\" / \")\" / \"\\\*\" / **\"+\"** / \",\" / \";\" / \"=\"
+> \"!\" / \"\\\$\" / \"&\" / \"'\" / \"(\" / \")\" / \"\\\*\" / **"+"** / \",\" / \";\" / \"=\"
 
 #### base64 symbols
 
@@ -66,7 +66,7 @@ and we recevied:
 }
 ```
 
-Output is valid because the **\"+\"** symbol has **\"space\"** interpretation. Base64 standard has another interpretation.
+Output is valid because the **"+"** symbol has **"space"** interpretation. Base64 standard has another interpretation.
 
 Unit testing base64 encoding-decoding is really sadness. [js-base64](https://www.npmjs.com/package/js-base64) has more than 5 millions downloades on npm. This package used to have unpleasant vulnerability half year ago. **js-base64** used standart atob - btoa browser methods for encode and decode base64 but Nodejs have no **window** also **atob** - **btoa** methods so **js-base64** polyfilling it. Unfortunately polyfill did not generate the same exceptions like **atob** or **bota** **window** methods.
 
@@ -94,7 +94,7 @@ atob('%3D'); // Uncaught DOMException: Failed to execute 'atob' on 'Window': The
 Base64.decode('%3D'); // �
 ```
 
-Different interpretation produce different behavior while code testing so your code is not safety. To solve this problem let's read [tools.ietf.org](https://tools.ietf.org/html/rfc3548#page-6). Section four describe official way for resolving conflicts like this. Let's see **\"Base 64 Encoding with URL and Filename Safe Alphabet\"** chapter and check **\"Table 2: The \"URL and Filename safe\" Base 64 Alphabet\"**. There is no **\"+\"** symbol.
+Different interpretation produce different behavior while code testing so your code is not safety. To solve this problem let's read [tools.ietf.org](https://tools.ietf.org/html/rfc3548#page-6). Section four describe official way for resolving conflicts like this. Let's see **"Base 64 Encoding with URL and Filename Safe Alphabet"** chapter and check **"Table 2: The "URL and Filename safe" Base 64 Alphabet"**. There is no **"+"** symbol.
 
 > This encoding should not be regarded as the same as the \"base64\" encoding, and should not be referred to as only \"base64\". Unless made clear, \"base64\" refer to the base 64 in the previous section.
 
