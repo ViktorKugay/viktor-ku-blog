@@ -41,4 +41,6 @@ const PostPage: NextPage = () => {
   );
 };
 
+PostPage.getInitialProps = () => ({});
+
 export default PostPage;
