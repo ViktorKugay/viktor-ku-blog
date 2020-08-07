@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from 'react';
-import {MetricsDocument} from '../../../firebase/firestore.types';
+import {MetricsDocument} from '../../../lib/firestore.types';
 
 export const incrementPostViewsCounter = (
   metrics: MetricsDocument,

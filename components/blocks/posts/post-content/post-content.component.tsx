@@ -11,7 +11,7 @@ import anime from 'animejs';
 
 import s from './post-content.module.scss';
 import c from './post-content.config.json';
-import {firestoreApi} from 'firebase/firestore.api';
+// import {firestoreApi} from 'firebase/firestore.api';
 
 interface Props {
   post: Post;
@@ -26,7 +26,7 @@ export const PostContent: React.FC<Props> = ({post}) => {
   const postMetrics = metricsContext.getPostMetricsById(post.attributes.id);
 
   useEffect(() => {
-    firestoreApi.incrementPostViewsCounter(post.attributes.id);
+    // firestoreApi.incrementPostViewsCounter(post.attributes.id);
     metricsContext.incrementPostViewsCounter(post.attributes.id);
     scrollToElement(c.PostContent.componentId);
     Prism.highlightAll();
@@ -43,7 +43,7 @@ export const PostContent: React.FC<Props> = ({post}) => {
       }, 500);
 
       setPostLiked(true);
-      firestoreApi.incrementPostLikesCounter(post.attributes.id);
+      // firestoreApi.incrementPostLikesCounter(post.attributes.id);
       metricsContext.incrementPostLikesCounter(post.attributes.id);
     }
   };

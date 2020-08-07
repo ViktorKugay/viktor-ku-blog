@@ -1,17 +1,22 @@
 import React, {useState, Dispatch, SetStateAction, useEffect} from 'react';
-import {MetricsDocument} from '../../firebase/firestore.types';
+import {MetricsDocument} from '../../lib/firestore.types';
 import {metricsContext} from './metrics.context';
+import {useAsync} from 'react-use';
+import axios from 'axios';
 
 import {incrementPostLikesCounter} from './actions/increment-post-likes-counter';
 import {incrementPostViewsCounter} from './actions/increment-posts-views-counter';
 import {getPostMetricsById} from './selectors/get-post-metrics-by-id';
 
-import firebase from '../../firebase/firestore.api';
-import {extractFireStoreDocuments} from 'firebase/helpers/extract-firesotore-documents';
-
 interface Props {
   value?: MetricsDocument;
 }
+
+const fetcher = async () => {
+  const response = await axios.get('/api/metrics');
+
+  return response.data;
+};
 
 export const transfrom = (metrics: MetricsDocument, setMetrics: Dispatch<SetStateAction<MetricsDocument>>) => ({
   getPostMetricsById: getPostMetricsById(metrics),
@@ -22,14 +27,13 @@ export const transfrom = (metrics: MetricsDocument, setMetrics: Dispatch<SetStat
 export const MetricsProvider: React.FC<Props> = ({children}) => {
   const [metrics, setMetrics] = useState<MetricsDocument>({});
 
+  const metricsState = useAsync(fetcher);
+
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection('posts')
-      .get()
-      .then(extractFireStoreDocuments)
-      .then((res) => setMetrics(res));
-  }, []);
+    if (metricsState.value) {
+      setMetrics(metricsState.value);
+    }
+  }, [metricsState]);
 
   return <metricsContext.Provider value={transfrom(metrics, setMetrics)}>{children}</metricsContext.Provider>;
 };
