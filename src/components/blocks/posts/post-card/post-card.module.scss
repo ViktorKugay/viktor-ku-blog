@@ -1,0 +1,89 @@
+.root {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  /* stylelint-disable-next-line */
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0.725rem 1.45rem -0.3625rem;
+  transform: none;
+}
+
+.metrics_progress_container {
+  margin-top: 8px;
+  width: 100%;
+  height: 5px;
+}
+
+.metrics_value {
+  margin-top: 2px;
+  margin-left: 4px;
+  line-height: 16px;
+}
+
+.metric {
+  margin-top: 8px;
+  display: flex;
+  width: 42px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metrics_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.margin {
+  &_normal {
+    margin-bottom: 24px;
+  }
+
+  &_desnse {
+    margin-bottom: 16px;
+  }
+}
+
+.image {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.text_container {
+  z-index: 1;
+  width: 100%;
+  background-color: white;
+
+  &_large {
+    margin-top: 55%;
+    padding: 24px;
+  }
+
+  &_small {
+    margin-top: 60%;
+    padding: 12px 8px;
+  }
+}
+
+.link {
+  width: 100%;
+
+  @media (min-width: 900px) {
+    width: 49%;
+  }
+}
+
+.mod {
+  &_large {
+    width: 100%;
+  }
+}

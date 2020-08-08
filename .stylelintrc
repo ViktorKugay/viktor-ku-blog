@@ -5,7 +5,7 @@
     "stylelint-declaration-block-no-ignored-properties",
     "stylelint-media-use-custom-media",
   ],
-  "ignoreFiles": ["./styles/reboot.css"],
+  "ignoreFiles": ["./src/styles/reboot.css"],
   "defaultSeverity": "error",
   "rules": {
     "aditayvm/at-rule-no-children": true,
@@ -13,13 +13,13 @@
     "csstools/media-use-custom-media": [
       "known",
       {
-        "importFrom": ["./styles/variables.css"]
+        "importFrom": ["./src/styles/variables.css"]
       }
     ],
     "csstools/value-no-unknown-custom-properties": [
       true,
       {
-        "importFrom": ["./styles/variables.css"]
+        "importFrom": ["./src/styles/variables.css"]
       }
     ],
     "block-no-empty": true,
