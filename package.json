@@ -57,7 +57,7 @@
     "gray-matter": "4.0.2",
     "jdown": "1.0.4",
     "next": "9.5.1",
-    "next-on-netlify": "^2.3.2",
+    "next-on-netlify": "2.3.2",
     "notistack": "0.9.17",
     "postcss-custom-media": "7.0.8",
     "postcss-custom-properties": "9.1.1",
