@@ -6,39 +6,56 @@ import {App} from '../../components/app';
 import {useRouter} from 'next/router';
 import ErrorPage from 'next/error';
 import NextHead from 'next/head';
-import {NextPage} from 'next';
+import {NextPage, NextPageContext} from 'next';
 import React from 'react';
 
 import posts from '../../../content.json';
 
-const renderHead = (post: PostContentSourceMap) => (
-  <NextHead>
-    <meta property="og:title" content={post.attributes.title} />
-    <meta property="og:description" content={post.attributes.description} />
-    <meta property="og:image" content={post.attributes.image} />
-    <meta property="og:url" content="https://vkugay.ru" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="ru_RU" />
-    <meta property="vk:image" content={post.attributes.image} />
-  </NextHead>
-);
+interface IHead {
+  postContentSourceMap: PostContentSourceMap;
+}
 
-const PostPage: NextPage = () => {
-  const router = useRouter();
+const Head: React.FC<IHead> = ({postContentSourceMap}) => {
+  const {attributes} = postContentSourceMap;
 
-  const postContentSourceMap = posts.find((p) => p.attributes.id === router.query.postname);
+  return (
+    <>
+      <meta property="og:title" content={attributes.title} />
+      <meta property="og:description" content={attributes.description} />
+      <meta property="og:image" content={attributes.image} />
+      <meta property="og:url" content="https://vkugay.ru" />
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="ru_RU" />
+      <meta property="vk:image" content={attributes.image} />
+    </>
+  );
+};
+
+interface IPostPage {
+  postContentSourceMap: PostContentSourceMap | undefined;
+}
+
+const PostPage: NextPage<IPostPage> = ({postContentSourceMap}) => {
   if (!postContentSourceMap) {
     return <ErrorPage statusCode={404} />;
   }
 
   return (
-    <App head={renderHead(postContentSourceMap)}>
+    <App headContent={<Head postContentSourceMap={postContentSourceMap} />}>
       <HeaderBlock>
         <PostContent postContentSourceMap={postContentSourceMap} />
         <FooterBlock />
       </HeaderBlock>
     </App>
   );
+};
+
+PostPage.getInitialProps = (ctx: NextPageContext): IPostPage => {
+  const postContentSourceMap = posts.find((p) => p.attributes.id === ctx.query.postname);
+
+  return {
+    postContentSourceMap,
+  };
 };
 
 export default PostPage;

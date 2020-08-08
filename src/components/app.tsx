@@ -32,10 +32,10 @@ const useStyles: () => Record<string, string> = makeStyles(() =>
 );
 
 interface Props {
-  head?: ReactElement;
+  headContent?: any;
 }
 
-export const App: React.FC<Props> = ({children, head: HeadComponent}) => {
+export const App: React.FC<Props> = ({children, headContent: HeadContent}) => {
   const classes = useStyles();
 
   return (
@@ -69,7 +69,7 @@ export const App: React.FC<Props> = ({children, head: HeadComponent}) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        {HeadComponent}
+        {HeadContent}
       </Head>
       <ThemeProvider theme={theme}>
         <SnackbarProvider classes={{variantInfo: classes.info}}>
