@@ -4,6 +4,7 @@ import {Visibility, ThumbUpAlt} from '@material-ui/icons';
 import {useMetricsStore} from '../../../../store/store';
 import React, {useEffect, useRef, useState} from 'react';
 import {Text} from '../../../ui/text/text.component';
+import cn from 'classnames';
 
 import Prism from 'prismjs';
 
@@ -16,7 +17,8 @@ interface Props {
 
 export const PostContent: React.FC<Props> = ({postContentSourceMap}) => {
   const {attributes, html} = postContentSourceMap;
-  const likeContainer = useRef<HTMLSpanElement>(null);
+
+  const likeContainer = useRef<any>(null);
   const [isPostLiked, setPostLiked] = useState(false);
 
   const metricsStore = useMetricsStore();
@@ -50,13 +52,13 @@ export const PostContent: React.FC<Props> = ({postContentSourceMap}) => {
       <div dangerouslySetInnerHTML={{__html: html}} />
       <div className={s.metrics_container}>
         <span className={s.metric}>
-          <Visibility />
+          <Visibility className={s.icon} />
           <Text mod="h4" weight="400" className={s.metrics_value}>
             {postMetrics && postMetrics.views}
           </Text>
         </span>
-        <span onMouseEnter={handleLikeMoveUp} ref={likeContainer} className={s.metric}>
-          <ThumbUpAlt onClick={handleLike} />
+        <span onMouseEnter={handleLikeMoveUp} className={s.metric}>
+          <ThumbUpAlt onClick={handleLike} className={cn(s.likes_icon, s.icon)} ref={likeContainer} />
           <Text mod="h4" weight="400" className={s.metrics_value}>
             {postMetrics && postMetrics.likes}
           </Text>

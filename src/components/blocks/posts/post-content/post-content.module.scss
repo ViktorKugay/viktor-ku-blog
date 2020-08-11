@@ -174,7 +174,6 @@
 .metric {
   margin-top: 8px;
   display: flex;
-  width: 42px;
   justify-content: space-between;
   align-items: center;
   will-change: transform;
@@ -194,8 +193,16 @@
   padding-left: 24px;
 }
 
+.icon {
+  margin-right: 8px;
+}
+
+.likes_icon {
+  will-change: scroll-position, transform;
+}
+
 .likes_icon_scaled_and_rotated {
-  animation: likes_counter_scale_and_rotate 4s;
+  animation: likes_counter_scale_and_rotate 2s linear infinite;
 }
 
 @keyframes likes_counter_scale_and_rotate {
@@ -203,17 +210,9 @@
     transform: scale(1.3) translateX(-10px) rotate(360deg);
   }
 
-  // 30% {
-  //   transform: rotate(-30deg) translateX(-10px);
-  // }
-
-  // 50% {
-  //   transform: scale(1) translateX(-10px);
-  // }
-
-  // 75% {
-  //   transform: scale(1) translateX(0px);
-  // }
+  75% {
+    transform: scale(1) rotate(360deg);
+  }
 
   100% {
     transform: rotate(0deg) translateX(0);
