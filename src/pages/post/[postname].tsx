@@ -2,14 +2,12 @@ import {PostContent} from '../../components/blocks/posts/post-content/post-conte
 import {HeaderBlock} from '../../components/blocks/header/header.component';
 import {FooterBlock} from '../../components/blocks/footer/footer.component';
 import {PostContentSourceMap} from '../../types/types';
-import {App} from '../../components/app';
-import {useRouter} from 'next/router';
-import ErrorPage from 'next/error';
-import NextHead from 'next/head';
 import {NextPage, NextPageContext} from 'next';
+import {App} from '../../components/app';
+import ErrorPage from 'next/error';
 import React from 'react';
 
-import posts from '../../../content.json';
+import posts from '../../../posts.json';
 
 interface IHead {
   postContentSourceMap: PostContentSourceMap;
@@ -41,7 +39,7 @@ const PostPage: NextPage<IPostPage> = ({postContentSourceMap}) => {
   }
 
   return (
-    <App headContent={<Head postContentSourceMap={postContentSourceMap} />}>
+    <App headInnerComponent={<Head postContentSourceMap={postContentSourceMap} />}>
       <HeaderBlock>
         <PostContent postContentSourceMap={postContentSourceMap} />
         <FooterBlock />

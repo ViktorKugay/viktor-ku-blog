@@ -6,7 +6,7 @@ import {PostCard} from './post-card/post-card.component';
 import {PostContentSourceMap} from '../../../types/types';
 import {Container} from '../../ui/container/container.component';
 
-import posts from '../../../../content.json';
+import posts from '../../../../posts.json';
 
 import s from './posts.module.scss';
 import c from './posts.config.json';

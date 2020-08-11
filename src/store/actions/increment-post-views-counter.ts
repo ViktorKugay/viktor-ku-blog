@@ -1,11 +1,11 @@
-import {PostsMetricsSourceMap} from '../../types/types';
 import {State} from '@hookstate/core';
-import {firestoreApi} from 'src/firestore/firestore.api';
+import {PostsMetricsSourceMap} from '../../types/types';
+import {firestoreApi} from '../../firestore/firestore.api';
 
-export const incrementPostViewsCounter = (s: State<PostsMetricsSourceMap>) => (postId: string) => {
+export const incrementPostViewsCounter = (s: State<PostsMetricsSourceMap>) => async (postId: string): Promise<void> => {
   const postMetrics = s[postId].get();
   if (postMetrics) {
-    firestoreApi.incrementPostViewsCounter(postId).then(() => {
+    return firestoreApi.incrementPostViewsCounter(postId).then(() => {
       s.merge({
         [postId]: {
           ...postMetrics,

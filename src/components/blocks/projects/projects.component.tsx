@@ -13,8 +13,8 @@ export const ProjectBlock: React.FC = () => {
         <Text className={s.projects_title} mod="h2" weight="700">
           {c.PackagesBlock.title}
         </Text>
-        {c.PackagesBlock.items.map(({title, description, color, href}, index) => (
-          <ProjectCard key={index} title={title} description={description} color={color} href={href} />
+        {c.PackagesBlock.items.map((project, index) => (
+          <ProjectCard key={index} project={project} />
         ))}
       </Container>
     </div>

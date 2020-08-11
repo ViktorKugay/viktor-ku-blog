@@ -16,7 +16,6 @@ export const HeaderBlock: React.FC = ({children}) => {
   return (
     <div className={s.root}>
       <div className={s.header_background} />
-
       <header>
         <Container justify="space-between" className={s.header_container}>
           <a href="/" className={s.header_link}>

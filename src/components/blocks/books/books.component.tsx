@@ -14,17 +14,8 @@ export const BooksBlock: React.FC = () => {
         {c.Books.title}
       </Text>
       <SliderContainer>
-        {c.Books.items.map(({title, image, author, href, points, logo, color}, index) => (
-          <BookCard
-            key={index}
-            title={title}
-            author={author}
-            image={image}
-            color={color as any}
-            logo={logo}
-            href={href}
-            points={points}
-          />
+        {c.Books.items.map((book, index) => (
+          <BookCard key={index} book={book} />
         ))}
       </SliderContainer>
     </Container>

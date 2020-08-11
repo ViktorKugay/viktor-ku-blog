@@ -1,42 +1,19 @@
-import {ThemeProvider, createStyles, makeStyles} from '@material-ui/core';
 import {NotifierProvider} from '../context/notifier/NotifierProvider';
-import {grey, deepPurple} from '@material-ui/core/colors';
-import {createMuiTheme} from '@material-ui/core';
+import {useStyles} from '../utils/create-material-styles';
+import {createTheme} from '../utils/create-material-theme';
+import {ThemeProvider} from '@material-ui/core';
 import {SnackbarProvider} from 'notistack';
-import React, {ReactElement} from 'react';
+import React, {ReactNode} from 'react';
 import Head from 'next/head';
 
-export const theme = createMuiTheme({
-  palette: {
-    common: {
-      black: grey[900],
-      white: grey[50],
-    },
-    primary: {
-      light: grey[300],
-      main: grey[600],
-      dark: grey[900],
-    },
-    secondary: {
-      light: deepPurple[50],
-      main: deepPurple[500],
-      dark: deepPurple[900],
-    },
-  },
-});
-
-const useStyles: () => Record<string, string> = makeStyles(() =>
-  createStyles({
-    info: {backgroundColor: '#9b9b9b'},
-  }),
-);
-
 interface Props {
-  headContent?: any;
+  headInnerComponent?: ReactNode;
 }
 
-export const App: React.FC<Props> = ({children, headContent: HeadContent}) => {
-  const classes = useStyles();
+export const App: React.FC<Props> = ({children, headInnerComponent: HeadContent}) => {
+  const classes = useStyles({
+    info: {backgroundColor: '#9b9b9b'},
+  });
 
   return (
     <>
@@ -44,8 +21,8 @@ export const App: React.FC<Props> = ({children, headContent: HeadContent}) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-        <title>{'Viktor Kugay'}</title>
-        <link rel="icon" href={'https://static.rnd.tinkoff.ru/misc/favicon-4bed33d1-e37d-44f8-b2d3-4d9174ab42fd.png'} />
+        <title>{'Kugay Blog'}</title>
+        <link rel="icon" href="/favicon.png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,700;1,500&display=swap"
           rel="stylesheet"
@@ -71,7 +48,7 @@ export const App: React.FC<Props> = ({children, headContent: HeadContent}) => {
         />
         {HeadContent}
       </Head>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={createTheme()}>
         <SnackbarProvider classes={{variantInfo: classes.info}}>
           <NotifierProvider>{children}</NotifierProvider>
         </SnackbarProvider>

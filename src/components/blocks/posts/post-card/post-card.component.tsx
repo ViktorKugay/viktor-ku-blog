@@ -6,7 +6,6 @@ import {LinearProgress} from '@material-ui/core';
 import React, {useRef} from 'react';
 import Link from 'next/link';
 import cn from 'classnames';
-import anime from 'animejs';
 
 import s from './post-card.module.scss';
 import c from './post-card.config.json';
@@ -20,7 +19,7 @@ interface Props {
 
 export const PostCard: React.FC<Props> = ({post, className, mod = 'middle', margin = 'normal'}) => {
   const metricsStore = useMetricsStore();
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
 
   const isLargeMod = mod === 'large';
   const alignTextBlock = mod === 'large' ? 'left' : 'center';
@@ -28,19 +27,15 @@ export const PostCard: React.FC<Props> = ({post, className, mod = 'middle', marg
   const postMetrics = metricsStore.getPostMetricsById(post.attributes.id);
 
   const handlePostCardMoveUp = () => {
-    anime({
-      targets: container.current,
-      scale: 1.03,
-      duration: 3000,
-    });
+    if (container.current) {
+      container.current.classList.add(s.scaled_card);
+    }
   };
 
   const handlePostCardMoveDown = () => {
-    anime({
-      targets: container.current,
-      scale: 1,
-      duration: 3000,
-    });
+    if (container.current) {
+      container.current.classList.remove(s.scaled_card);
+    }
   };
 
   const renderDescriptionBlock = () => (

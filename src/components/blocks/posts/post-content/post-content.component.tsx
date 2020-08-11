@@ -1,13 +1,11 @@
 import {scrollToElement} from '../../../../utils/scroll-to-element';
 import {PostContentSourceMap} from '../../../../types/types';
-import {createMarkup} from '../../../../utils/create-markup';
 import {Visibility, ThumbUpAlt} from '@material-ui/icons';
 import {useMetricsStore} from '../../../../store/store';
 import React, {useEffect, useRef, useState} from 'react';
 import {Text} from '../../../ui/text/text.component';
 
 import Prism from 'prismjs';
-import anime from 'animejs';
 
 import s from './post-content.module.scss';
 import c from './post-content.config.json';
@@ -18,11 +16,10 @@ interface Props {
 
 export const PostContent: React.FC<Props> = ({postContentSourceMap}) => {
   const {attributes, html} = postContentSourceMap;
-
+  const likeContainer = useRef<HTMLSpanElement>(null);
   const [isPostLiked, setPostLiked] = useState(false);
-  const metricsStore = useMetricsStore();
-  const likeContainer = useRef(null);
 
+  const metricsStore = useMetricsStore();
   const postMetrics = metricsStore.getPostMetricsById(attributes.id);
 
   useEffect(() => {
@@ -35,30 +32,14 @@ export const PostContent: React.FC<Props> = ({postContentSourceMap}) => {
     if (!isPostLiked) {
       await metricsStore.incrementPostLikesCounter(attributes.id).then(() => {
         setPostLiked(true);
-        anime({
-          targets: likeContainer.current,
-          duration: 5000,
-          rotate: 360,
-          direction: 'alternate',
-        });
       });
     }
   };
 
   const handleLikeMoveUp = () => {
-    anime({
-      targets: likeContainer.current,
-      scale: 1.1,
-      duration: 1000,
-    });
-  };
-
-  const handleLikeMoveDown = () => {
-    anime({
-      targets: likeContainer.current,
-      scale: 1,
-      duration: 1000,
-    });
+    if (likeContainer.current) {
+      likeContainer.current.classList.add(s.likes_icon_scaled_and_rotated);
+    }
   };
 
   return (
@@ -66,7 +47,7 @@ export const PostContent: React.FC<Props> = ({postContentSourceMap}) => {
       <h1>{attributes.title}</h1>
       <h2>{attributes.description}</h2>
       <img src={attributes.image} className={s.image} alt={c.PostContent.postImageAlt} />
-      <div dangerouslySetInnerHTML={createMarkup(html)} />
+      <div dangerouslySetInnerHTML={{__html: html}} />
       <div className={s.metrics_container}>
         <span className={s.metric}>
           <Visibility />
@@ -74,13 +55,8 @@ export const PostContent: React.FC<Props> = ({postContentSourceMap}) => {
             {postMetrics && postMetrics.views}
           </Text>
         </span>
-        <span className={s.metric}>
-          <ThumbUpAlt
-            ref={likeContainer}
-            onClick={handleLike}
-            onMouseEnter={handleLikeMoveUp}
-            onMouseLeave={handleLikeMoveDown}
-          />
+        <span onMouseEnter={handleLikeMoveUp} ref={likeContainer} className={s.metric}>
+          <ThumbUpAlt onClick={handleLike} />
           <Text mod="h4" weight="400" className={s.metrics_value}>
             {postMetrics && postMetrics.likes}
           </Text>

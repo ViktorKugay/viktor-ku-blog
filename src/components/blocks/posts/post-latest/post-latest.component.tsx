@@ -3,7 +3,7 @@ import {Text} from '../../../ui/text/text.component';
 import {Container} from '../../../ui/container/container.component';
 import {PostCard} from '../post-card/post-card.component';
 
-import posts from '../../../../../content.json';
+import posts from '../../../../../posts.json';
 
 import s from './post-latest.module.scss';
 import c from './post-latest.config.json';

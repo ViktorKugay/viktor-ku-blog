@@ -5,9 +5,14 @@
   width: 100%;
   background-color: white;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, .3) 0 .725rem 1.45rem -.3625rem;
+  transition: all .5s;
+  will-change: contents;
   cursor: pointer;
-  /* stylelint-disable-next-line */
-  box-shadow: rgba(0, 0, 0, 0.3) 0 0.725rem 1.45rem -0.3625rem;
+}
+
+.scaled_project_card {
+  transform: scale(1.03);
 }
 
 .content {
