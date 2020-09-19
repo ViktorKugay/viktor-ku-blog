@@ -12,7 +12,7 @@ description: Query string is simple... Not! Some notes about important URI featu
 
 2. Query String standartization
 
-3. Most frequently trouble cases
+3. Frequently trouble cases
     
     * Specials symbols
 
@@ -35,9 +35,7 @@ The following is example URI and component parts:
 >   |           |              |           |        |
 > scheme   authority        path         query   fragment
 
-The query component contains non-hierarchical data. It means that any data within query string is optional and doesn't specify path to resource. 
-
-> https://example.ru is equal https://example.ru?name=viktor
+The query component contains non-hierarchical data. It means that any data within query string is optional and doesn't specify path to resource. `https://example.ru` and `https://example.ru?name=viktor` both identify the same resource.
 
 # Query String standartization
 
@@ -45,12 +43,12 @@ Query String is part of the URI syntax so URI specification commonly standartize
 
 The first URI specification [rfc1630](https://tools.ietf.org/html/rfc1630) was created in 1994 by Network Working Group with [T. Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee) and were extended URNs syntax in 1997. This specification were revised and expanded by the IETF over time. [rfc2986](https://tools.ietf.org/html/rfc3986) is one of the most relevant and widely known standard today. [rfc2986](https://tools.ietf.org/html/rfc3986) was created at January 2005. 
 
-This documentation where extended by: 
+Documentation were revised and extended over time: 
 * [Representing IPv6 Zone Identifiers in Address Literals and Uniform Resource Identifiers](https://tools.ietf.org/html/rfc6874)
 * [URI Design and Ownership](https://tools.ietf.org/html/rfc7320)
 * [Guidelines and Registration Procedures for URI Schemes](https://tools.ietf.org/html/rfc7595) 
 
-IETF [Hypertext Transfer Protocol Doc](https://tools.ietf.org/html/rfc2616) contains related information about URI syntax and extends documents described above. 
+IETF [Hypertext Transfer Protocol Doc](https://tools.ietf.org/html/rfc2616) contains related information about URI syntax. 
 
 W3C Technical Architecture Group published a lot of healthy documents about URI: 
 
@@ -60,15 +58,15 @@ W3C Technical Architecture Group published a lot of healthy documents about URI:
 
 The documents mentioned above describe main URI syntax but they aren't collection of strict rules. Lot of Query String consumers like Web Servers and client applications parse Query String according to internal rules.
 
-# Most frequently trouble cases
+# Frequently trouble cases
 
 ## Specials symbols
 
 ### Case
 
-* Using base64 encoding data
+* Using base64 encoding data as query string value
 
-### Problem
+### Troule
 
 * Errors during parse **-** and **+** symbols
 
@@ -93,7 +91,6 @@ URIs include components and subcomponents that are delimited by characters in th
 > gen-delims  = ":" / "/" / "?" / "#" / "[" / "]" / "@"
 > sub-delims  = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
 
-
 #### Unreserved Characters
 
 Characters that are allowed in a URI but do not have a reserved purpose are called unreserved.  These include uppercase and lowercase letters, decimal digits, hyphen, period, underscore, and tilde.
@@ -113,10 +110,86 @@ Pay attention:
 > This encoding should not be regarded as the same as the \"base64\" encoding, and should not be referred 
 > to as only \"base64\". Unless made clear, \"base64\" refer to the base 64 in the previous section.  
 
-You can use:
+To safety parse and stringify query string data you may use:
 
 * [@waiting/base64](https://www.npmjs.com/package/@waiting/base64)
 * [base64url](https://www.npmjs.com/package/base64url)
 * [url-safe-base64](https://www.npmjs.com/package/url-safe-base64)
 
+## Sub-delims symbols
 
+### Case
+
+* Using string with `,` character
+
+> ?name=viktor&message=hello,world
+
+### Trouble
+
+* Parse string as array of strings
+
+### Description
+
+As I mention above `,` is sub-delim symbol so every comma within query string have to be percent encoded. Lot of the services parse percent encoded commas correct but it's not a silver bullet. 
+
+### Solution
+
+Query String hasn't only one standart so different parsers rules is not mistake but I had unpleasant experience with errors during parsing commas. I prefer try all scenarios before release application today. 
+
+##  Unit testing
+
+### Case
+
+* Handling errors during parsing query string
+
+### Trouble
+
+* Different behavior during execute code into browser and tests 
+
+### Description 
+
+Write good unit test to check base64 encoding-decoding is not simple. For example [js-base64](https://www.npmjs.com/package/js-base64) has more than 5 millions downloades on npm. Half year ago **js-base64** had unpleasant vulnerability. **js-base64** used standart atob - btoa browser methods for encode and decode base64 strings but Nodejs has no **window** and **atob** or **btoa** methods so **js-base64** polyfilling it. Unfortunately polyfill did not generate same exceptions like **window.atob** or **window.btoa**.
+
+```javascript
+var _atob = global.atob
+  ? function (a) {
+      return global.atob(a);
+    }
+  : function (a) {
+      return a.replace(/\S{1,4}/g, cb_decode);
+    };
+```
+
+[github.com/dankogai/js-base64](https://github.com/dankogai/js-base64/blob/e8a9a09edaf79fddee3623d97421151dcbd384c9/base64.js#L142).
+
+The **\"+\"** symbol withing query string transformed to **%3D** character.
+
+```javascript
+atob('%3D'); // Uncaught DOMException: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.
+```
+
+**vs**
+
+```javascript
+Base64.decode('%3D'); // �
+```
+
+It means that unit tests is not safe anymore. To solve this problem let's read [tools.ietf.org](https://tools.ietf.org/html/rfc3548#page-6). Section four describe official way for resolving conflicts like this. Let's see **"Base 64 Encoding with URL and Filename Safe Alphabet"** chapter and check **"Table 2: The "URL and Filename safe" Base 64 Alphabet"**. There is no **"+"** symbol.
+
+# Conclusion
+
+## "These aren't the Droids you're looking for..."
+
+<div align='center'>
+  <img src='https://miro.medium.com/max/1400/1*rsNFPltOQ-qDGqnl9jB_ug.png' />
+</div>
+
+Simple features can bring a lot of troubles. Query string is powerfull feature but I would use POST, PUT and others methods with the same body params. It's most safety way transport your data from client to server.
+
+This article will be extending over time. I'm waiting your feedback on my facebook also email.
+
+<h2 align='right'>
+    2020.07.17
+</h2>
+
+---
