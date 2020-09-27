@@ -19,7 +19,10 @@ interface Props {
   sliderConfig?: object;
 }
 
-export const SliderContainer: React.FC<Props> = ({children, sliderConfig = sliderDefaultConfig}) => {
+export const SliderContainer: React.FC<Props> = ({
+  children,
+  sliderConfig = sliderDefaultConfig,
+}) => {
   const slider = useRef<Slider>(null);
 
   return (

@@ -1,20 +1,20 @@
-export interface PostCustomAttributes {
-  id: string;
+export interface PostAttributes {
+  id: PostId;
   date: string;
   title: string;
   image: string;
   description: string;
 }
 
-export interface PostContentSourceMap {
+export interface Post {
   body: string; // post content markdown
   html: string; // post content html
   bodyBegin: number; // number of line
   frontmatter?: string; // post header
-  attributes: PostCustomAttributes; // custom attributes
+  attributes: PostAttributes; // custom attributes
 }
 
-export interface BookSourceMap {
+export interface Book {
   title: string;
   author: string;
   image: string;
@@ -24,11 +24,15 @@ export interface BookSourceMap {
   points: string[];
 }
 
-export interface ProjectSourceMap {
+export interface Project {
   title: string;
   description: string;
   color: string;
   href: string;
+}
+
+export enum PostId {
+  queryString = 'query-string',
 }
 
 export interface PostMetrics {
@@ -36,4 +40,18 @@ export interface PostMetrics {
   likes: number;
 }
 
-export type PostsMetricsSourceMap = Record<string, PostMetrics>;
+export interface Metrics {
+  posts: FetchStatus<Record<PostId, PostMetrics>>;
+}
+
+export type FetchStatus<T> = FetchStatusInit | FetchStatusSuccess<T>;
+
+export interface FetchStatusSuccess<T> {
+  status: 'success';
+  data: T;
+}
+
+export interface FetchStatusInit {
+  status: 'init';
+  data: undefined;
+}

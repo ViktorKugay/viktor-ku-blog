@@ -1,0 +1,11 @@
+{
+  "title": "Projects & Packages",
+  "items": [
+    {
+      "title": "Viktor.Ku Blog",
+      "description": "TypeScript React single page application. Posts and articles created from markdown using Front-Matter and Showdown",
+      "color": "linear-gradient(135deg, rgb(255, 247, 32) 10%, rgb(60, 213, 0) 100%)",
+      "href": "https://github.com/ViktorKugay/viktor-ku-blog"
+    }
+  ]
+}

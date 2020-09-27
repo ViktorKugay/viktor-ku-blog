@@ -10,8 +10,19 @@ interface Props {
   className?: string;
 }
 
-export const Divider: React.FC<Props> = ({className, color = 'grey', height = '2', margin = '16'}) => {
-  const classNames = cn(s[`color_${color}`], s[`height_${height}`], s[`margin_${margin}`], s.root, className);
+export const Divider: React.FC<Props> = ({
+  className,
+  color = 'grey',
+  height = '2',
+  margin = '16',
+}) => {
+  const classNames = cn(
+    s[`color_${color}`],
+    s[`height_${height}`],
+    s[`margin_${margin}`],
+    s.root,
+    className,
+  );
 
   return <div className={classNames} />;
 };

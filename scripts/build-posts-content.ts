@@ -1,4 +1,4 @@
-import {PostContentSourceMap, PostCustomAttributes} from '../src/types/types';
+import {Post, PostAttributes} from '../src/types/types';
 import {readFileSync, readdirSync, writeFileSync} from 'fs';
 import frontmatter from 'front-matter';
 import Showdown from 'showdown';
@@ -12,7 +12,7 @@ const OUTPUT_PATH = resolve('posts.json');
 
 buildPostsContent();
 
-export function buildPostsContent(input: string = INPUT_PATH): PostContentSourceMap[] {
+export function buildPostsContent(input: string = INPUT_PATH): Post[] {
   const postsDirSourceMap = readdirSync(input);
   const postsContentList = postsDirSourceMap.reduce(postContentBuilder(input), []);
 
@@ -24,11 +24,11 @@ export function buildPostsContent(input: string = INPUT_PATH): PostContentSource
 }
 
 function postContentBuilder(input: string) {
-  return (acc: PostContentSourceMap[], postPath: string) => {
+  return (acc: Post[], postPath: string) => {
     if (isPost(postPath)) {
       const postContentMd = readFileSync(resolve(input, postPath), 'utf-8');
 
-      const postContentJson = frontmatter<PostCustomAttributes>(postContentMd);
+      const postContentJson = frontmatter<PostAttributes>(postContentMd);
       const postContentHtml = converter.makeHtml(postContentJson.body);
 
       validatePostAttributes(postContentJson.attributes);
@@ -40,7 +40,7 @@ function postContentBuilder(input: string) {
   };
 }
 
-function validatePostAttributes(attributes: PostCustomAttributes): void {
+function validatePostAttributes(attributes: PostAttributes): void {
   const {id, image, title, description, date} = attributes;
 
   assert(id, 'ID');

@@ -20,8 +20,8 @@
     "lint:css": "stylelint \"src/components/**/*.scss\" --config .stylelintrc-format",
     "lint:js": "eslint 'src/components/**/*.{ts,tsx,js}' --cache",
     "format": "run-p format:*",
-    "format:js": "prettier --write \"src/components/**/*.{ts,tsx,js}\"",
-    "format:json": "prettier --write \"src/components/**/*.json\"",
+    "format:js": "prettier --write \"src/**/*.{ts,tsx,js}\"",
+    "format:json": "prettier --write \"src/**/*.json\"",
     "format:css": "prettier --write \"src/components/**/*.scss\" && stylelint --fix \"src/components/**/*.scss\" --config .stylelintrc-format"
   },
   "husky": {
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@hookstate/core": "3.0.1",
-    "@material-ui/core": "4.10.0",
+    "@material-ui/core": "4.11.0",
     "@material-ui/icons": "4.9.1",
     "classnames": "2.2.6",
     "firebase": "7.17.0",
@@ -55,7 +55,6 @@
     "front-matter": "4.0.2",
     "next": "9.5.1",
     "next-on-netlify": "2.3.2",
-    "notistack": "0.9.17",
     "postcss-custom-media": "7.0.8",
     "postcss-custom-properties": "9.1.1",
     "postcss-flexbugs-fixes": "4.2.1",

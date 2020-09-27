@@ -1,0 +1,11 @@
+.root {
+  margin: 0 auto;
+  padding: 48px 0;
+  padding-bottom: 0;
+  max-width: 90%;
+  font-family: var(--font-mulish);
+
+  @media (min-width: 900px) {
+    width: 40%;
+  }
+}

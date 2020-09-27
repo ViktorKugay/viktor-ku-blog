@@ -1,0 +1,1 @@
+export const LOCAL_STORAGE_LIKED_POST_KEY = 'POSTS:LIKED';

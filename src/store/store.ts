@@ -1,22 +1,38 @@
 import {useState, State, createState} from '@hookstate/core';
-import {PostsMetricsSourceMap} from '../types/types';
+import {Metrics} from '../types/types';
+// fetchers
+import {fetchPostsMetrics} from './fetchers/fetch-metrics';
+// actions
+import {setPostLiked} from './actions/set-post-liked';
+import {incrementPostLikes} from './actions/increment-post-likes';
+import {incrementPostViews} from './actions/increment-post-views';
+// selectors
+import {selectLikedPosts} from './selectors/select-liked-posts';
+import {selectPostsMetrics} from './selectors/select-posts-metrics';
 
-import {fetchPostsMetricsSourceMap} from './actions/fetch-posts-metrics-source-map';
-import {incrementPostLikesCounter} from './actions/increment-post-likes-counter';
-import {incrementPostViewsCounter} from './actions/increment-post-views-counter';
+import {createInitFetchStatus} from '../utils/create-init-fetch-status';
 
-import {getPostMetricsById} from './selectors/get-post-metrics-by-id';
+export interface Store {
+  metrics: Metrics;
+}
 
-export const transfrom = (s: State<PostsMetricsSourceMap>) => ({
+export const transfrom = (s: State<Store>) => ({
+  s: s,
   // === selectors ===
-  getPostMetricsById: getPostMetricsById(s),
+  selectLikedPosts: selectLikedPosts(),
+  selectPostsMetrics: selectPostsMetrics(s),
   // === fetchers ===
-  fetchPostsMetricsSourceMap: fetchPostsMetricsSourceMap(s),
+  fetchPostsMetrics: fetchPostsMetrics(s),
   // === actions ===
-  incrementPostLikesCounter: incrementPostLikesCounter(s),
-  incrementPostViewsCounter: incrementPostViewsCounter(s),
+  setPostLiked: setPostLiked(),
+  incrementPostLikes: incrementPostLikes(s),
+  incrementPostViews: incrementPostViews(s),
 });
 
-const globalState = createState<PostsMetricsSourceMap>({});
+const globalState = createState<Store>({
+  metrics: {
+    posts: createInitFetchStatus(),
+  },
+});
 
-export const useMetricsStore = () => transfrom(useState(globalState));
+export const useStore = () => transfrom(useState(globalState));
