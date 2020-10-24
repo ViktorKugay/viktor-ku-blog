@@ -1,7 +1,7 @@
 import {grey, deepPurple} from '@material-ui/core/colors';
-import {createMuiTheme} from '@material-ui/core';
+import {createMuiTheme, Theme} from '@material-ui/core';
 
-export function createTheme() {
+export function createTheme(): Theme {
   return createMuiTheme({
     palette: {
       common: {

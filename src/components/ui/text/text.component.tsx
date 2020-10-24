@@ -6,6 +6,7 @@ import s from './text.module.scss';
 
 interface Props {
   className?: string;
+  fullWidth?: boolean;
   isUppercase?: boolean;
   onClick?(event: any): any;
   margin?: 'normal' | 'dense';
@@ -33,10 +34,12 @@ export const Text: React.FC<Props> = ({
   isUppercase = false,
   fontFamily = 'roboto',
   whiteSpace = 'preWrap',
+  fullWidth = false,
 }) => {
   const Tag = tag;
   const classNames = cn(
     {
+      [s.fullWidth]: fullWidth,
       [s[`mod_${mod}`]]: mod,
       [s[`align_${align}`]]: align,
       [s[`color_${color}`]]: color,

@@ -6,9 +6,9 @@ import {App} from '../../../components/app';
 import {Footer} from '../../../components/common/footer/footer.component';
 import {Header} from '../../../components/common/header/header.component';
 
-import {BgBlue} from '../../../components/ui/bg-blue/bg-blue.components';
+import {BgBlue} from '../../ui/bg-blue/bg-blue.component';
 
-import {SectionPost} from './sections/post/section-post.components';
+import {SectionPost} from './sections/post/section-post.component';
 
 import {Post} from '../../../types/types';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Post, PostMetrics} from '../../../../../types/types';
-import {CardPostContent} from '../../../../../components/cards/post/content/card-post-content.component';
+import {CardPostContent} from '../../../../cards/post/content/card-post-content.component';
 import {Metrics} from '../../../../common/metrics/metrics.component';
 
 import s from './section-post.module.scss';

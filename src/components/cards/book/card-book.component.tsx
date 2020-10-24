@@ -33,16 +33,18 @@ export const CardBook: React.FC<Props> = ({
       <div className={s.logo_container}>
         <img src={logoUrl} className={s.logo} />
       </div>
-      <Text mod="h3" weight="500" className={s.title}>
+      <Text fullWidth align="center" mod="h3" weight="500" className={s.title}>
         {title}
       </Text>
-      <Text mod="h4" className={s.author}>
+      <Text fullWidth align="center" mod="h4" className={s.author}>
         {subtitle}
       </Text>
       <ul className={s.points}>
         {pointsList.map((text, index) => (
           <li key={index} className={cn(s.list_item, s[`list_item_${pointsColor}`])}>
-            <Text>{text}</Text>
+            <Text fullWidth align="center">
+              {text}
+            </Text>
           </li>
         ))}
       </ul>

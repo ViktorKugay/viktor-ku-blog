@@ -34,6 +34,7 @@ export const TinyletterSubscribeForm: React.FC = () => {
         margin="dense"
         label={c.SubscribeForm.textFieldLabel}
         color="secondary"
+        variant="outlined"
         fullWidth
       />
       <Button color="purple" className={s.button} fullWidth>

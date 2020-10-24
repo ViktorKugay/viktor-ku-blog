@@ -10,11 +10,15 @@ interface Props {
   onClick?(): void;
 }
 
+const regExp = /(.+)#(\w+)/;
+
 export const Link: React.FC<Props> = ({href, className, children, onClick = noop}) => {
   const handleClick = (event: any) => {
-    if (href[1] === '#') {
+    const {pathname} = window.location;
+    const parsedHref = href.match(regExp);
+    if (parsedHref && pathname === parsedHref[1]) {
       event.preventDefault();
-      scrollToElement(href.slice(2));
+      scrollToElement(parsedHref[2]);
     }
     onClick();
   };

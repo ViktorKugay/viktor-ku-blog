@@ -6,7 +6,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import 'firebase/analytics';
 
-// import {FirestoreApiMock} from './mocks/firestore.api';
+import {FirestoreApiMock} from './mocks/firestore.api';
 
 var clientCredentials = {
   apiKey: 'AIzaSyCTNeDdmqEkCbPE00ZNKAjFQXWsHSqBInU',
@@ -70,6 +70,6 @@ export function mapFireStoreDocuments(
   return documents.docs.reduce((acc, doc) => ({...acc, [doc.id]: doc.data()}), {}) as any;
 }
 
-// export const firestoreApi = new FirestoreApiMock();
+export const firestoreApi = new FirestoreApiMock();
 
-export const firestoreApi = new FirestoreApi();
+// export const firestoreApi = new FirestoreApi();
