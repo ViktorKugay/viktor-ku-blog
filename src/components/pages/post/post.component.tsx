@@ -24,11 +24,7 @@ export const PagePost: React.FC<Props> = ({post}) => {
   }
 
   return (
-    <App
-      metaTitle={state.data.post.attributes.title}
-      metaDescription={state.data.post.attributes.description}
-      metaImage={state.data.post.attributes.image}
-    >
+    <App>
       <BgBlue />
       <Header />
       <SectionPost post={post} metrics={state.data.metrics} />
