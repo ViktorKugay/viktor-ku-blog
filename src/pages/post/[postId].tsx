@@ -50,7 +50,7 @@ const PostPage: NextPage<Props> = ({post}) => {
         <meta property="og:title" content={post.attributes.title} />
         <meta property="og:description" content={post.attributes.description} />
         <meta property="og:image" content={post.attributes.image} />
-        <meta property="og:url" content="https://vkugay.ru" />
+        <meta property="og:url" content={`https://vkugay.ru/post/${post.attributes.id}`} />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ru_RU" />
         <meta property="vk:image" content={post.attributes.image} />
