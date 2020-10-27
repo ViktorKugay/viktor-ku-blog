@@ -28,7 +28,7 @@ export const CardPostPreviewLarge: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <Link href={`/post/${id}`}>
+    <Link href={`/post/[postId]`} as={`/post/${id}`}>
       <div className={cn(s.root, className)}>
         <img className={s.image} src={imageUrl} />
 

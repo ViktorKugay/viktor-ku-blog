@@ -10,7 +10,13 @@ interface State {
 export function usePostPage(post: Post): FetchStatus<State> {
   const [state, setState] = useState<FetchStatus<State>>({
     status: 'init',
-    data: undefined,
+    data: {
+      post,
+      metrics: {
+        views: 0,
+        likes: 0,
+      },
+    },
   });
 
   const store = useStore();

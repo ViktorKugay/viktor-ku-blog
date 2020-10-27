@@ -19,16 +19,12 @@ interface Props {
 export const PagePost: React.FC<Props> = ({post}) => {
   const state = usePostPage(post);
 
-  if (state.status === 'init') {
-    return null;
-  }
-
   return (
-    <App>
+    <>
       <BgBlue />
       <Header />
       <SectionPost post={post} metrics={state.data.metrics} />
       <Footer />
-    </App>
+    </>
   );
 };

@@ -9,5 +9,9 @@ export const App: React.FC = ({children}) => {
     setTheme(createTheme());
   }, []);
 
-  return <>{theme && <ThemeProvider theme={theme}>{children}</ThemeProvider>}</>;
+  if (!theme) {
+    return <>{children}</>;
+  }
+
+  return <ThemeProvider theme={theme as any}>{children}</ThemeProvider>;
 };

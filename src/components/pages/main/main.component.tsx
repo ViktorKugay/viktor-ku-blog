@@ -19,26 +19,20 @@ import s from './main.module.scss';
 export const MainPage: React.FC = () => {
   const state = useMainPage();
 
-  if (state.status === 'init') {
-    return null;
-  }
-
   return (
-    <App>
-      <div className={s.root}>
-        <BgBlue />
-        <Header />
-        <main>
-          <SectionBiography />
-          <SectionPostLatest
-            metrics={state.data.latestPost.metrics}
-            post={state.data.latestPost.content}
-          />
-          <SectionProjects />
-          <SectionBooks />
-        </main>
-        <Footer />
-      </div>
-    </App>
+    <>
+      <BgBlue />
+      <Header />
+      <main>
+        <SectionBiography />
+        <SectionPostLatest
+          metrics={state.data.latestPost.metrics}
+          post={state.data.latestPost.content}
+        />
+        <SectionProjects />
+        <SectionBooks />
+      </main>
+      <Footer />
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import {MainPage} from '../components/pages/main/main.component';
+import {App} from '../components/app';
 import Head from 'next/head';
 import React from 'react';
 
@@ -35,7 +36,9 @@ export function Main() {
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
-      <MainPage />
+      <App>
+        <MainPage />
+      </App>
     </>
   );
 }

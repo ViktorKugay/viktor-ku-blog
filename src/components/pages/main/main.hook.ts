@@ -15,7 +15,15 @@ interface State {
 export function useMainPage(): FetchStatus<State> {
   const [state, setState] = useState<FetchStatus<State>>({
     status: 'init',
-    data: undefined,
+    data: {
+      latestPost: {
+        metrics: {
+          views: 0,
+          likes: 0,
+        },
+        content: posts[0] as Post,
+      },
+    },
   });
 
   const store = useStore();

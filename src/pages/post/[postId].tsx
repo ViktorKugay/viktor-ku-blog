@@ -1,6 +1,7 @@
 import React from 'react';
 import ErrorPage from 'next/error';
 import {NextPage, NextPageContext} from 'next';
+import {App} from '../../components/app';
 import {PagePost} from '../../components/pages/post/post.component';
 import {Post} from '../../types/types';
 import Head from 'next/head';
@@ -55,7 +56,9 @@ const PostPage: NextPage<Props> = ({post}) => {
         <meta property="og:locale" content="ru_RU" />
         <meta property="vk:image" content={post.attributes.image} />
       </Head>
-      <PagePost post={post} />
+      <App>
+        <PagePost post={post} />
+      </App>
     </>
   );
 };

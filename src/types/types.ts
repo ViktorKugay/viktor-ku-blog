@@ -44,14 +44,14 @@ export interface Metrics {
   posts: FetchStatus<Record<PostId, PostMetrics>>;
 }
 
-export type FetchStatus<T> = FetchStatusInit | FetchStatusSuccess<T>;
+export type FetchStatus<T> = FetchStatusInit<T> | FetchStatusSuccess<T>;
 
 export interface FetchStatusSuccess<T> {
   status: 'success';
   data: T;
 }
 
-export interface FetchStatusInit {
+export interface FetchStatusInit<T> {
   status: 'init';
-  data: undefined;
+  data: T;
 }
