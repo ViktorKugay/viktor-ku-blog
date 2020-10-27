@@ -16,7 +16,7 @@ description: Query string is simple... Not!
 
 ## Query String Definition
 
-Query String is simple way to share data between client and server. The query is component of URI (Uniform Resource Identifier) — compact sequence of characters that identifies an abstract or physical resource.
+Query String is a simple way to share data between client and server. The query is a component of URI (Uniform Resource Identifier) — compact sequence of characters that identifies an abstract or physical resource.
 
 The generic URI syntax consists of a hierarchical sequence of components referred to as the scheme, authority, path, query, and fragment. The query component is indicated by the first question mark (“?”) character and terminated by a number sign (“#”) character or by the end of the URI.
 
@@ -94,13 +94,15 @@ qs.parse('data=bmFtZT3Qk9GA0LjQs9C+0YDQuNC5');
 // { data: 'bmFtZT3Qk9GA0LjQs9C 0YDQuNC5' }
 ```
 
-Instead **plus** you can see **space**. String with space is not base64 string. Let’s execute atob:
+Instead **plus** you can see **space**. String with space is not base64 string. After all let's execute **atob** on this string:
 
 ```javascript
 atob(‘bmFtZT3Qk9GA0LjQs9C 0YDQuNC5’);
 
 // name=ÐÑÐ¸Ð³Ð´`4.4.
 ```
+
+Unexpected result!
 
 ### Solution
 
@@ -147,14 +149,16 @@ Pay attention:
 NPM packages for URL safe base64 encoding:
 
 - [@waiting/base64](https://www.npmjs.com/package/@waiting/base64)
+
 - [base64url](https://www.npmjs.com/package/base64url)
+
 - [url-safe-base64](https://www.npmjs.com/package/url-safe-base64)
 
 ## Unexpected Reserved Characters
 
 ### Case
 
-Query params without percent encoding
+Using query params without percent encoding
 
 ### Trouble
 
@@ -170,7 +174,7 @@ Let's check example. Your application has simple search line. User typing search
 axios.get(`/?q=${searchQuery}`);
 ```
 
-For example user type string with hashtag character (#) to search input. Hash is gen-delim symbol ( [tools.ietf.org](https://tools.ietf.org/html/rfc3986#section-2.2) ). Server will receive empty query if you send raw search input because hash is gen-delim and all string after this character will be in hash URI component.
+For example user type string with hashtag character (#) to search input. Server will receive empty query if you send raw search input because hash is gen-delim ( [tools.ietf.org](https://tools.ietf.org/html/rfc3986#section-2.2) ). All data after _hash_ character will be in hash URI component.
 
 ```javascript
 new URL('http://localhost:3000/?q=#myHashTag');
@@ -180,7 +184,7 @@ new URL('http://localhost:3000/?q=#myHashTag');
 
 ### Solution
 
-Always encode query params. To avoid mistakes like this developers have multiple ways:
+Always encoding query params. You can use packages helpers or native browser methods:
 
 #### axios
 
@@ -210,15 +214,9 @@ encodeURIComponent('q=#myHashTag'); // q%3D%23myHashTag
 
 Decode base64 query param with percent encoded characters
 
-```javascript
-atob(window.location.search); // ?value=1d2d32d%3D
-```
-
 ### Trouble
 
-- Unexpected broken string
-
-- Error handling
+Unexpected characters into query params
 
 ### Description
 
@@ -226,7 +224,7 @@ I used to use **js-base64** to decode base64 string. This package use **window.a
 
 Unfortunately polyfill and standard atob were distinguished. **js-base64** successfully decoded percent encoded string. **Atob** threw exception after execution on string with non base64 symbols.
 
-Let's check example. The equal sign (**=**) commonly use in base64 string. This character have to be percent encoded because it URI reserved character:
+Let's check example. The equal sign (**=**) commonly use in base64 string. This character have to be percent encoded because it is a URI reserved character:
 
 ```javascript
 encodeURIComponent('='); // %3D
@@ -246,7 +244,7 @@ atob('%3D');
 Base64.decode('%3D'); // �
 ```
 
-If you wrote unit tests - forget it. All your unit tests is not relevant.
+If you wrote unit tests - forget it. All of them are not relevant.
 
 ### Solution
 
@@ -264,7 +262,7 @@ qs.parse('data=%3D'); // {data: '='}
   <img src='https://miro.medium.com/max/1400/1*rsNFPltOQ-qDGqnl9jB_ug.png' />
 </div>
 
-Simple features can bring a lot of troubles. Query string is useful feature but I recommend you use **POST**, **PUT** and other methods for share data. It's more safety. If you still want use query string - check encoded data, add validators and write tests to avoid all corner cases in production.
+Simple features can bring a lot of troubles. Query string is useful feature but I recommend you use **POST**, **PUT** and other methods for share data. It's more safety. If you still want use query string you should check encoded data, add validators and write more tests to avoid all corner cases in production.
 
 <h2 align='right'>
     28.10.2020
