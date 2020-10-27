@@ -13,6 +13,7 @@ class FirestoreApi {
 
   constructor() {
     if (!firebase.apps.length) {
+      console.log(process.env);
       firebase.initializeApp(JSON.parse(process.env.FIRESTORE_CREDENTIALS as any));
     }
 
