@@ -1,12 +1,9 @@
 import {useState, State, createState} from '@hookstate/core';
-import {Metrics} from '../types/types';
-// fetchers
+import {Metrics, PostId, PostMetrics} from '../types/types';
 import {fetchPostsMetrics} from './fetchers/fetch-metrics';
-// actions
 import {setPostLiked} from './actions/set-post-liked';
 import {incrementPostLikes} from './actions/increment-post-likes';
 import {incrementPostViews} from './actions/increment-post-views';
-// selectors
 import {selectLikedPosts} from './selectors/select-liked-posts';
 import {selectPostsMetrics} from './selectors/select-posts-metrics';
 
@@ -31,7 +28,12 @@ export const transfrom = (s: State<Store>) => ({
 
 const globalState = createState<Store>({
   metrics: {
-    posts: createInitFetchStatus(),
+    posts: createInitFetchStatus<Record<PostId, PostMetrics>>({
+      [PostId.queryString]: {
+        likes: 0,
+        views: 0,
+      },
+    }),
   },
 });
 
