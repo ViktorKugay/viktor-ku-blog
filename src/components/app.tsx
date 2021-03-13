@@ -1,17 +1,18 @@
-import {createTheme} from '../utils/create-material-theme';
-import {ThemeProvider, Theme} from '@material-ui/core';
-import React, {useState, useEffect} from 'react';
+import Head from 'next/head';
+import React from 'react';
 
-export const App: React.FC = ({children}) => {
-  const [theme, setTheme] = useState<Theme>();
+interface Props {
+  DocumentHead: React.FC;
+  DocumentBody: React.FC;
+}
 
-  useEffect(() => {
-    setTheme(createTheme());
-  }, []);
-
-  if (!theme) {
-    return <>{children}</>;
-  }
-
-  return <ThemeProvider theme={theme as any}>{children}</ThemeProvider>;
+export const Document: React.FC<Props> = ({DocumentHead, DocumentBody}) => {
+  return (
+    <>
+      <Head>
+        <DocumentHead />
+      </Head>
+      <DocumentBody />
+    </>
+  );
 };

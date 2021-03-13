@@ -1,12 +1,80 @@
 :root {
-  --font-fallback: 'Segoe UI', '-apple-system', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  // === анимация ===
+  --duration: .2s;
+  --timing: ease-in-out;
+  // === шрифты ===
+  --font-fallback: sans-serif;
   --font-montserrat: 'Montserrat', var(--font-fallback);
-  --font-mulish: 'Mulish', var(--font-fallback);
+  // === отступы ===
+  --margin-s: 8px;
+  --margin-m: 16px;
+  --margin-l: 24px;
+  --padding-s: 8px;
+  --padding-m: 16px;
+  --padding-l: 24px;
+  --padding-xl: 32px;
+  --padding-xxl: 40px;
+  --padding-xxxl: 48px;
+  --padding-xxxxl: 64px;
+  --padding-xxxxxl: 124px;
+  // === типографика ===
+  --font-size-h1: 68px;
+  --line-height-h1: 72px;
+  --font-size-h2: 45px;
+  --line-height-h2: 50px;
+  --font-size-h3: 36px;
+  --line-height-h3: 40px;
+  --font-size-h4: 30px;
+  --line-height-h4: 36px;
+  --font-size-h5: 24px;
+  --line-height-h5: 28px;
+  --font-size-h6: 16px;
+  --line-height-h6: 24px;
+  --font-size-p1: 14px;
+  --line-height-p1: 20px;
+  --font-size-p2: 12px;
+  --line-height-p2: 16px;
+  // === цвета ===
+  --bg-color-white: white;
+  --bg-color-white-inverse: black;
+  --bg-color-white-hover: rgb(196, 196, 196);
+  --bg-color-black: black;
+  --bg-color-black-inverse:white;
+  --bg-color-black-hover:rgb(35, 35, 35);
+  --bg-color-red: red;
+  --bg-color-red-inverse: white;
+  --bg-color-red-hover: white;
+  --bg-color-gray: gray;
+  --bg-color-gray-inverse: white;
+  --bg-color-gray-hover: rgb(156, 156, 156);
 
-  --primary-color: #373d48;
-  --secondary-color: #a3a3a3;
-  --sidebar-color: #f4f4f4;
-  --text-color: #000000cc;
+  --text-color-black: black;
+  --text-color-black-inverse: white;
+  --text-color-black-hover: rgb(35, 35, 35);
+  --text-color-red: red;
+  --text-color-red-inverse: white;
+  --text-color-red-hover: rgb(255, 90, 90);
+  --text-color-gray: gray;
+  --text-color-gray-inverse: white;
+  --text-color-gray-hover: rgb(156, 156, 156);
+  --text-color-white: white;
+  --text-color-white-inverse: black;
+  --text-color-white-hover:rgb(196, 196, 196);
+  // === закругления ===
+  --border-radius-s: 4px;
+  --border-radius-m: 8px;
+  --border-radius-l: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-xxl: 48px;
+  --border-radius-xxxl: 64px;
 
-  --main-width: 45rem;
+  // === границы ===
+  --border-s: 2px solid black;
+  --border-m: 4px solid black;
+  --border-l: 8px solid black;
+
+  //
+  --text-width-bold: 800;
+  --text-width-normal: 600;
+  --text-width-dense: 500;
 }

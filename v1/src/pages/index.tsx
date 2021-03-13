@@ -1,22 +1,9 @@
-import React from 'react';
-import ErrorPage from 'next/error';
-import {NextPage, NextPageContext} from 'next';
-import {App} from '../../components/app';
-import {PagePost} from '../../components/pages/post/post.component';
-import {Post} from '../../types/types';
+import {MainPage} from '../components/pages/main/main.component';
+import {App} from '../components/app';
 import Head from 'next/head';
+import React from 'react';
 
-import posts from '../../../posts.json';
-
-interface Props {
-  post: Post | undefined;
-}
-
-const PostPage: NextPage<Props> = ({post}) => {
-  if (!post) {
-    return <ErrorPage statusCode={404} />;
-  }
-
+export function Main() {
   return (
     <>
       <Head>
@@ -48,23 +35,12 @@ const PostPage: NextPage<Props> = ({post}) => {
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-        <meta property="og:title" content={post.attributes.title} />
-        <meta property="og:description" content={post.attributes.description} />
-        <meta property="og:image" content={post.attributes.image} />
-        <meta property="og:url" content={`https://vkugay.ru/post/${post.attributes.id}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="ru_RU" />
-        <meta property="vk:image" content={post.attributes.image} />
       </Head>
       <App>
-        <PagePost post={post} />
+        <MainPage />
       </App>
     </>
   );
-};
+}
 
-PostPage.getInitialProps = (ctx: NextPageContext): Props => ({
-  post: posts.find((post) => post.attributes.id === ctx.query.postId) as Post,
-});
-
-export default PostPage;
+export default Main;
