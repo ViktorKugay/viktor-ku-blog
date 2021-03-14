@@ -14,7 +14,7 @@
     "build:next": "next build",
     "postbuild": "next-on-netlify",
     "typecheck": "tsc --noEmit",
-    "test": "jest --passWithNoTests",
+    "test": "echo no test",
     "lint": "run-p lint:*",
     "lint:css": "stylelint 'src/**/*.scss'",
     "lint:js": "eslint 'src/**/*.{ts,tsx,js}'",
