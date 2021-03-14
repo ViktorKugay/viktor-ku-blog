@@ -1,0 +1,24 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0,
+    // TODO выпилить эти правила, они нужны, включить их обратно после рефакторинга
+    "@typescript-eslint/ban-ts-comment": 0,
+    "prefer-const": 0,
+    "no-var": 0
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+    "amd": true,
+    "node": true
+  }
+}

@@ -1,5 +1,5 @@
 @import './variables.scss';
-/* stylelint-disable-next-line selector-max-specificity */
+
 html,
 body,
 #root {
@@ -10,8 +10,6 @@ body,
   color: var(--primary-color);
   font-weight: 700;
 }
-
-/* Useful for backgrounds */
 
 *,
 *::before,
@@ -158,10 +156,10 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
-a:not([href]):not([tabindex]) {
-  text-decoration: none;
-  color: inherit;
-}
+// a:not([href]):not([tabindex]) {
+//   text-decoration: none;
+//   color: inherit;
+// }
 
 a:not([href]):not([tabindex]):hover,
 a:not([href]):not([tabindex]):focus {
@@ -369,17 +367,13 @@ button {
   padding: 0;
   background-color: transparent;
   border: none;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   outline: none;
   cursor: pointer;
 
   &:focus {
-    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     outline: none;
   }
 }
-
-/* Platform styles */
 
 body {
   color: #333333;
@@ -405,11 +399,9 @@ button:focus,
 select:focus,
 textarea:focus,
 dt:focus {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   outline: none;
 }
 
-/* stylelint-disable-next-line selector-max-compound-selectors */
 .user-is-tabbing *:focus {
   outline: 2px solid #7aacfe;
   outline: 5px auto -webkit-focus-ring-color;

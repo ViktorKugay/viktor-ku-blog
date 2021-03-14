@@ -6,6 +6,8 @@ import '../styles/variables.scss';
 import '../styles/fonts.scss';
 
 // @See https://nextjs.org/docs/advanced-features/custom-apphttps://nextjs.org/docs/advanced-features/custom-app
-export default function CustomApp({Component, pageProps}: AppProps) {
+const App: React.FC<AppProps> = ({Component, pageProps}) => {
   return <Component {...pageProps} />;
-}
+};
+
+export default App;

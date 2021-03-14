@@ -1,0 +1,112 @@
+.layout {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+
+  background-color: black;
+  background-image: url('/backgrounds/main.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header {
+  &_container {
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  &_logoImage {
+    width: 150px;
+    padding: 16px;
+    cursor: pointer;
+  }
+
+  &_navigation {
+    &_container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+
+    &_listContainer {
+      display: flex;
+    }
+
+    &_link {
+      display: inline-block;
+      padding: 8px 16px;
+      color: white;
+      font-family: 'Montserrat';
+      font-size: 24px;
+
+      &_outlined {
+        background: white;
+        border-radius: 49px;
+        color: black;
+      }
+    }
+  }
+}
+
+.main {
+  &_container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &_section {
+    &_socials {
+      position: relative;
+      z-index: 100;
+      width: 100%;
+
+      &_line {
+        width: 80%;
+        height: 2px;
+        margin: 0 auto;
+        background-color: white;
+      }
+
+      &_container {
+        display: flex;
+        justify-content: space-between;
+        padding: 24px 20%;
+      }
+
+      &_logo {
+        &_github {
+          position: relative;
+          top: 24px;
+
+          width: 200px;
+          height: 100px;
+          background: url('/socials/github.svg');
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+
+    &_title {
+      z-index: 100;
+      width: 100%;
+      padding: 24px 0;
+      margin-top: 180px;
+      background-color: rgba(0, 0, 0, 0.7);
+
+      &_text {
+        margin: 0 auto;
+      }
+    }
+  }
+}
