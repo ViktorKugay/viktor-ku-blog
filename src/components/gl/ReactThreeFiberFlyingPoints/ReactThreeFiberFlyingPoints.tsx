@@ -1,5 +1,5 @@
-import React, {useState, useCallback, useEffect, useRef, CSSProperties} from 'react';
-import Particles from './components/Particles';
+import React, {useState, useCallback, useEffect, useRef} from 'react';
+import {Particles} from './components/Particles';
 import {Effects} from './components/Effects';
 import {Sparks} from './components/Sparks';
 import {Canvas} from 'react-three-fiber';
@@ -12,17 +12,10 @@ import {
   INITIAL_MOUSE_POSITION,
   PARTICLES_COUNT,
   PIXEL_RATIO,
+  POINTS_LIGHT_DISTANCE,
+  POINTS_LIGHT_INTENCITY,
+  CANVAS_STYLES,
 } from './constants';
-
-const CANVAS_STYLES: CSSProperties = {
-  position: 'absolute',
-  height: '100vh',
-  width: '100%',
-  top: '0',
-  left: '0',
-  opacity: '0.9',
-  zIndex: 1,
-};
 
 const ReactThreeFiberFlyingPoints: React.FC = () => {
   const [isMouseDown, setIsMouseDown] = useState(false);
@@ -46,17 +39,17 @@ const ReactThreeFiberFlyingPoints: React.FC = () => {
       onMouseUp={() => setIsMouseDown(false)}
       onMouseDown={() => setIsMouseDown(true)}
     >
+      <pointLight
+        color="white"
+        distance={POINTS_LIGHT_DISTANCE}
+        intensity={POINTS_LIGHT_INTENCITY}
+      />
       {/* prettier-ignore */}
       <Particles 
         count={PARTICLES_COUNT} 
         mouse={mouseCoords} 
       />
-      {/* prettier-ignore */}
-      <Sparks
-        mouse={mouseCoords.current}
-        count={FLYING_POINTS_COUNT}
-        colors={FLYING_POINTS_COLORS}
-      />
+      <Sparks mouse={mouseCoords} count={FLYING_POINTS_COUNT} colors={FLYING_POINTS_COLORS} />
       <Effects isActive={isMouseDown} />
     </Canvas>
   );

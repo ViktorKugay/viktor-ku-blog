@@ -1,7 +1,7 @@
 import React, {useRef, useMemo, useEffect} from 'react';
 import {extend, useThree, useFrame} from 'react-three-fiber';
-import {GlitchPass} from './post/Glitchpass';
-import {WaterPass} from './post/Waterpass';
+import {GlitchPass} from './effects/Glitchpass';
+import {WaterPass} from './effects/Waterpass';
 import * as THREE from 'three';
 
 import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer';
@@ -43,7 +43,7 @@ export const Effects: React.FC<Props> = ({isActive}) => {
       {/* @ts-ignore */}
       <waterPass attachArray="passes" factor={1.5} />
       {/* @ts-ignore */}
-      <unrealBloomPass attachArray="passes" args={[aspect, 2, 1, 0]} />
+      {/* <unrealBloomPass attachArray="passes" args={[aspect, 2, 1, 0]} /> */}
       {/* @ts-ignore */}
       <glitchPass attachArray="passes" factor={isActive ? 1 : 0} />
       {/* @ts-ignore */}

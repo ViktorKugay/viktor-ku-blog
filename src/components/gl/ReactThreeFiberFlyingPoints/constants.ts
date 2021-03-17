@@ -1,3 +1,4 @@
+import {CSSProperties} from 'react';
 import {isMobile} from '../../../constants';
 import {ReactThreeFiberCamera} from '../../../types/types';
 
@@ -21,3 +22,15 @@ export const CURSOR_CUSTOM =
 // конфиг сцены
 export const PIXEL_RATIO = Math.min(2, isMobile ? window.devicePixelRatio : 1);
 export const CAMERA: ReactThreeFiberCamera = {fov: 100, position: [0, 0, 30]};
+
+export const POINTS_LIGHT_DISTANCE = 100;
+export const POINTS_LIGHT_INTENCITY = 20;
+
+export const CANVAS_STYLES: CSSProperties = {
+  // position: 'absolute',
+  height: '100vh',
+  width: '100%',
+  // top: '0',
+  // left: '0',
+  // zIndex: 1,
+};

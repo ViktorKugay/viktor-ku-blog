@@ -1,0 +1,28 @@
+.section {
+  &_side_socials {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    width: 124px;
+    height: 80vh;
+    padding-left: 24px;
+    border-left: 2px solid white;
+
+    &_container {
+      display: flex;
+      height: 80vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &_logo {
+      width: 50px;
+    }
+
+    &_logo_github {
+      z-index: 2;
+      width: 200px;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import noop from 'lodash/noop';
-import React, { MouseEventHandler } from 'react';
+import React, {MouseEventHandler} from 'react';
 
 interface Props {
   href: string;

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   Mesh,
   OrthographicCamera,
@@ -8,9 +7,10 @@ import {
   UniformsUtils,
   Vector2,
 } from 'three';
+
 import {Pass} from 'three/examples/jsm/postprocessing/Pass';
 
-var WaterShader = {
+const WaterShader = {
   uniforms: {
     byp: {value: 0}, //apply the glitch ?
     tex: {type: 't', value: null},
@@ -52,38 +52,51 @@ var WaterShader = {
      }`,
 };
 
-var WaterPass = function (dt_size) {
-  Pass.call(this);
-  if (WaterShader === undefined) console.error('THREE.WaterPass relies on THREE.WaterShader');
-  var shader = WaterShader;
-  this.uniforms = UniformsUtils.clone(shader.uniforms);
-  if (dt_size === undefined) dt_size = 64;
-  this.uniforms['resolution'].value = new Vector2(dt_size, dt_size);
-  this.material = new ShaderMaterial({
-    uniforms: this.uniforms,
-    vertexShader: shader.vertexShader,
-    fragmentShader: shader.fragmentShader,
-  });
-  this.camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  this.scene = new Scene();
-  this.quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
-  this.quad.frustumCulled = false; // Avoid getting clipped
-  this.scene.add(this.quad);
-  this.factor = 0;
-  this.time = 0;
-};
+export class WaterPass extends Pass {
+  private uniforms!: any;
+  private material!: ShaderMaterial;
+  private camera!: OrthographicCamera;
+  private scene!: Scene;
+  private quad!: Mesh;
+  private factor!: 0;
+  private time!: 0;
 
-WaterPass.prototype = Object.assign(Object.create(Pass.prototype), {
-  constructor: WaterPass,
+  constructor(dt_size: any = 64) {
+    super();
 
-  render: function (renderer, writeBuffer, readBuffer, deltaTime, maskActive) {
+    this.uniforms = UniformsUtils.clone(WaterShader.uniforms);
+    this.uniforms['resolution'].value = new Vector2(dt_size, dt_size);
+
+    this.material = new ShaderMaterial({
+      uniforms: this.uniforms,
+      vertexShader: WaterShader.vertexShader,
+      fragmentShader: WaterShader.fragmentShader,
+    });
+
+    this.camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    this.scene = new Scene();
+
+    this.quad = new Mesh(new PlaneBufferGeometry(2, 2));
+    this.quad.frustumCulled = false; // Avoid getting clipped
+
+    this.scene.add(this.quad);
+
+    this.factor = 0;
+    this.time = 0;
+  }
+
+  public render(renderer: any, writeBuffer: any, readBuffer: any) {
     const factor = Math.max(0, this.factor);
+
     this.uniforms['byp'].value = factor ? 0 : 1;
     this.uniforms['tex'].value = readBuffer.texture;
     this.uniforms['time'].value = this.time;
     this.uniforms['factor'].value = this.factor;
+
     this.time += 0.05;
     this.quad.material = this.material;
+
     if (this.renderToScreen) {
       renderer.setRenderTarget(null);
       renderer.render(this.scene, this.camera);
@@ -92,7 +105,5 @@ WaterPass.prototype = Object.assign(Object.create(Pass.prototype), {
       if (this.clear) renderer.clear();
       renderer.render(this.scene, this.camera);
     }
-  },
-});
-
-export {WaterPass};
+  }
+}

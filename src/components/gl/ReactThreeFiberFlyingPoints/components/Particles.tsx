@@ -1,18 +1,26 @@
-// @ts-nocheck
 import * as THREE from 'three';
-import React, {useRef, useMemo} from 'react';
+import React, {useRef, useMemo, MutableRefObject} from 'react';
 import {useFrame, useThree} from 'react-three-fiber';
 
-export default function Particles({count, mouse}) {
-  const mesh = useRef();
-  const light = useRef();
+interface Props {
+  count: number;
+  mouse: MutableRefObject<number[]>;
+}
+
+export const Particles: React.FC<Props> = ({count, mouse}) => {
+  const mesh = useRef<any>();
+  const light = useRef<any>();
+
   const {size, viewport} = useThree();
+
   const aspect = size.width / viewport.width;
 
   const dummy = useMemo(() => new THREE.Object3D(), []);
+
   // Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
     const temp = [];
+
     for (let i = 0; i < count; i++) {
       const t = Math.random() * 100;
       const factor = 20 + Math.random() * 100;
@@ -22,10 +30,12 @@ export default function Particles({count, mouse}) {
       const zFactor = -50 + Math.random() * 100;
       temp.push({t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0});
     }
+
     return temp;
   }, [count]);
+
   // The innards of this hook will run every frame
-  useFrame((state) => {
+  useFrame(() => {
     // Makes the light follow the mouse
     light.current.position.set(mouse.current[0] / aspect, -mouse.current[1] / aspect, 0);
     // Run through the randomized data to calculate some movement
@@ -61,13 +71,15 @@ export default function Particles({count, mouse}) {
     });
     mesh.current.instanceMatrix.needsUpdate = true;
   });
+
   return (
     <>
       <pointLight ref={light} distance={40} intensity={8} color="lightblue" />
+      {/* @ts-ignore */}
       <instancedMesh ref={mesh} args={[null, null, count]}>
         <dodecahedronBufferGeometry args={[0.2, 0]} />
         <meshPhongMaterial color="#050505" />
       </instancedMesh>
     </>
   );
-}
+};

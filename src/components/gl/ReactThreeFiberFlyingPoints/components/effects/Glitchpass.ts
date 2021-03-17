@@ -1,8 +1,7 @@
-// @ts-nocheck
 import {
   DataTexture,
   FloatType,
-  Math as _Math,
+  MathUtils as _Math,
   Mesh,
   OrthographicCamera,
   PlaneBufferGeometry,
@@ -14,7 +13,7 @@ import {
 
 import {Pass} from 'three/examples/jsm/postprocessing/Pass.js';
 
-var DigitalGlitch = {
+const DigitalGlitch = {
   uniforms: {
     tDiffuse: {value: null}, //diffuse texture
     tDisp: {value: null}, //displacement texture for digital glitch squares
@@ -80,34 +79,45 @@ var DigitalGlitch = {
      }`,
 };
 
-var GlitchPass = function (dt_size) {
-  Pass.call(this);
-  if (DigitalGlitch === undefined) console.error('THREE.GlitchPass relies on THREE.DigitalGlitch');
-  var shader = DigitalGlitch;
-  this.uniforms = UniformsUtils.clone(shader.uniforms);
-  if (dt_size === undefined) dt_size = 64;
-  this.uniforms['tDisp'].value = this.generateHeightmap(dt_size);
-  this.material = new ShaderMaterial({
-    uniforms: this.uniforms,
-    vertexShader: shader.vertexShader,
-    fragmentShader: shader.fragmentShader,
-  });
-  this.camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  this.scene = new Scene();
-  this.quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
-  this.quad.frustumCulled = false; // Avoid getting clipped
-  this.scene.add(this.quad);
-  this.factor = 0;
-};
+export class GlitchPass extends Pass {
+  private material!: ShaderMaterial;
+  private camera!: OrthographicCamera;
+  private scene!: Scene;
+  private quad!: Mesh;
+  private uniforms: any;
+  private factor!: number;
 
-GlitchPass.prototype = Object.assign(Object.create(Pass.prototype), {
-  constructor: GlitchPass,
+  constructor(dt_size = 64) {
+    super();
 
-  render: function (renderer, writeBuffer, readBuffer, deltaTime, maskActive) {
+    this.uniforms = UniformsUtils.clone(DigitalGlitch.uniforms);
+    if (dt_size === undefined) dt_size = 64;
+    this.uniforms['tDisp'].value = this.generateHeightmap(dt_size);
+
+    this.material = new ShaderMaterial({
+      uniforms: this.uniforms,
+      vertexShader: DigitalGlitch.vertexShader,
+      fragmentShader: DigitalGlitch.fragmentShader,
+    });
+
+    this.camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    this.scene = new Scene();
+
+    this.quad = new Mesh(new PlaneBufferGeometry(2, 2));
+    this.quad.frustumCulled = false; // Avoid getting clipped
+
+    this.scene.add(this.quad);
+
+    this.factor = 0;
+  }
+
+  public render(renderer: any, writeBuffer: any, readBuffer: any) {
     const factor = Math.max(0, this.factor);
+
     this.uniforms['tDiffuse'].value = readBuffer.texture;
     this.uniforms['seed'].value = Math.random() * factor; //default seeding
     this.uniforms['byp'].value = 0;
+
     if (factor) {
       this.uniforms['amount'].value = (Math.random() / 90) * factor;
       this.uniforms['angle'].value = _Math.randFloat(-Math.PI, Math.PI) * factor;
@@ -115,8 +125,12 @@ GlitchPass.prototype = Object.assign(Object.create(Pass.prototype), {
       this.uniforms['distortion_y'].value = _Math.randFloat(0, 1) * factor;
       this.uniforms['seed_x'].value = _Math.randFloat(-0.3, 0.3) * factor;
       this.uniforms['seed_y'].value = _Math.randFloat(-0.3, 0.3) * factor;
-    } else this.uniforms['byp'].value = 1;
+    } else {
+      this.uniforms['byp'].value = 1;
+    }
+
     this.quad.material = this.material;
+
     if (this.renderToScreen) {
       renderer.setRenderTarget(null);
       renderer.render(this.scene, this.camera);
@@ -125,9 +139,9 @@ GlitchPass.prototype = Object.assign(Object.create(Pass.prototype), {
       if (this.clear) renderer.clear();
       renderer.render(this.scene, this.camera);
     }
-  },
+  }
 
-  generateHeightmap: function (dt_size) {
+  private generateHeightmap(dt_size: number) {
     var data_arr = new Float32Array(dt_size * dt_size * 3);
     var length = dt_size * dt_size;
 
@@ -141,7 +155,5 @@ GlitchPass.prototype = Object.assign(Object.create(Pass.prototype), {
     var texture = new DataTexture(data_arr, dt_size, dt_size, RGBFormat, FloatType);
     texture.needsUpdate = true;
     return texture;
-  },
-});
-
-export {GlitchPass};
+  }
+}

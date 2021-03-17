@@ -1,8 +1,9 @@
 import lerp from 'lerp';
-import * as THREE from 'three';
 import React, {useRef, useMemo} from 'react';
-import * as meshline from 'threejs-meshline';
 import {extend, useFrame, useThree} from 'react-three-fiber';
+
+import * as THREE from 'three';
+import * as meshline from 'threejs-meshline';
 
 extend(meshline);
 
@@ -44,7 +45,7 @@ const Fatline: React.FC<FatlineProps> = ({curve, width, color, speed}) => {
 };
 
 interface SparksProps {
-  mouse: number[];
+  mouse: MutableRefObject<number[]>;
   count: number;
   colors: string[];
   radius?: number;
@@ -84,10 +85,18 @@ export const Sparks: React.FC<SparksProps> = ({mouse, count, colors, radius = 10
 
   const aspect = size.width / viewport.width;
 
-  useFrame(() => {
+  useFrame((state) => {
     if (ref.current) {
-      ref.current.rotation.x = lerp(ref.current.rotation.x, 0 + mouse[1] / aspect / 200, 0.1);
-      ref.current.rotation.y = lerp(ref.current.rotation.y, 0 + mouse[0] / aspect / 400, 0.1);
+      ref.current.rotation.x = lerp(
+        ref.current.rotation.x,
+        0 + mouse.current[1] / aspect / 200,
+        0.1,
+      );
+      ref.current.rotation.y = lerp(
+        ref.current.rotation.y,
+        0 + mouse.current[0] / aspect / 400,
+        0.1,
+      );
     }
   });
 
