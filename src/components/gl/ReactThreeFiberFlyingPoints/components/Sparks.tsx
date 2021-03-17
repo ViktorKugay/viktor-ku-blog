@@ -1,5 +1,5 @@
 import lerp from 'lerp';
-import React, {useRef, useMemo} from 'react';
+import React, {useRef, useMemo, MutableRefObject} from 'react';
 import {extend, useFrame, useThree} from 'react-three-fiber';
 
 import * as THREE from 'three';
@@ -87,16 +87,8 @@ export const Sparks: React.FC<SparksProps> = ({mouse, count, colors, radius = 10
 
   useFrame((state) => {
     if (ref.current) {
-      ref.current.rotation.x = lerp(
-        ref.current.rotation.x,
-        0 + mouse.current[1] / aspect / 200,
-        0.1,
-      );
-      ref.current.rotation.y = lerp(
-        ref.current.rotation.y,
-        0 + mouse.current[0] / aspect / 400,
-        0.1,
-      );
+      ref.current.rotation.x = lerp(ref.current.rotation.x, 0 + mouse.current[1] / aspect / 200, 0.1);
+      ref.current.rotation.y = lerp(ref.current.rotation.y, 0 + mouse.current[0] / aspect / 400, 0.1);
     }
   });
 
